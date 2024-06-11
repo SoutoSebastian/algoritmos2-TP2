@@ -1,6 +1,6 @@
 package aed;
 
-import java.util.*;//para poder usar arrayList
+import java.util.*;                                //para poder usar arrayList
 
 public class trie<T> {
     private Nodo raiz;
@@ -13,7 +13,7 @@ public class trie<T> {
         public Nodo() {
             siguientes = new ArrayList<>(265);
             for (int i=0;i<265;i++) {                                   //Para crear un nodo creamos un array de 265 posiciones. Cada posicion 
-                siguientes.add(i,null);                         //hace referencia a un caracter del codigo ascii.
+                siguientes.add(i,null);                                 //hace referencia a un caracter del codigo ASCII.
             }
         }
     }
