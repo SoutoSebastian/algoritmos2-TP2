@@ -10,10 +10,11 @@ public class trie<T> {
         private T valor;
         private ArrayList<Nodo> siguientes;
 
-        public Nodo() {
-            siguientes = new ArrayList<>(265);
-            for (int i=0;i<265;i++) {                                   //Para crear un nodo creamos un array de 265 posiciones. Cada posicion 
-                siguientes.add(i,null);                                 //hace referencia a un caracter del codigo ASCII.
+        public Nodo() {                                                   //Para crear un nodo creamos un array de 265 posiciones. Cada posicion 
+            siguientes = new ArrayList<>(265);                            //hace referencia a un caracter del codigo ASCII.  
+            //siguientes es el abecedario de posibles letras?             //Hay que rellenar con null, porque si tratas de acceder othwerise, tira un outofboundexeptcion.              
+            for (int i=0;i<265;i++) {                                   
+                siguientes.add(i,null);                                 
             }
         }
     }
@@ -75,21 +76,18 @@ public class trie<T> {
         
         if(actual.valor == null){
             res = false;
-        }else{
-            res = true;
         }
-            
         return res;
     }
 
 
-    public T obtener(String s){
-        T res;
+    public T obtener(String clave){
+            T res;
 
             Nodo actual = raiz;
 
-            for (int i=0; i< s.length(); i++){
-                char letra = s.charAt(i);
+            for (int i=0; i< clave.length(); i++){
+                char letra = clave.charAt(i);
                 int indice = (int) letra;
                 Nodo siguiente = actual.siguientes.get(indice);
                 actual = siguiente;
@@ -99,5 +97,60 @@ public class trie<T> {
         
 
         return res;
+    }
+
+
+    private Boolean tieneMasDeUnhijo(Nodo padre){
+        int contador = 0;
+        int i = 0;
+        while ((contador<2)&&i<=256){
+            i ++;
+            if (padre.siguientes.get(i) != null){
+                contador ++;
+            }
+        }
+        return contador < 2;
+    }
+
+
+    public void borrar(String clave){
+        Nodo actual = raiz;
+        Nodo ultNodo = null;                                                //GUARDO EN ULTNODO (MIENTRAS VOY BAJANDO) AQUEL NODO Q TENGA MAS DE UN HIJO O Q TENGA SIGNIFICADO
+                                                                            //SI TIENE ALGUNA DE ESTAS 2, NO PUEDO BORRAR ESE NODO!!! SI NO PIERDO COSAS Q NO QUIERO PERDER.
+                                                                            //----> VER EJEMPLO VISUAL DE BORRAR CHARITO, CON CHARI CON SIGNFICADO Y CHARISA, CHARIZOTE TAMBIEN CON SIGN.
+        int ultimoIndice = 0;
+
+        for (int i=0; i< clave.length(); i++){
+            char letra = clave.charAt(i);
+            int indice = (int) letra;
+            Nodo siguiente = actual.siguientes.get(indice);
+            
+            if (actual.valor!=null || tieneMasDeUnhijo(actual)){
+                ultNodo = actual;
+                ultimoIndice = indice;                                       //charito --> chari;   charisa, charizote. aca me devuelve el indice de i, y nodo chari (AUTOTESTEO VISUAL)
+                                                                             //BORARIA A PARTIR DE chariTTTTTo, osea, borro t y todo lo q le siga a esa t. (solo "o" jiji)   
+            }
+
+            actual = siguiente;
+        }
+        //Ahora tocaria borrar hasta el ultimo nodo q tiene valor
+        if (tieneMasDeUnhijo(actual)){
+            ultNodo = actual;                                           //charito --> chari;   charisa, charizote. aca me devuelve el indice de i, y nodo chari (AUTOTESTEO VISUAL)
+                                                                         //BORARIA A PARTIR DE chariTTTTTo, osea, borro t y todo lo q le siga a esa t. (solo "o" jiji)   
+        }
+
+
+
+        else{                                           //en este caso, borro a partir del indice obtenido.
+            ultNodo.siguientes.set(ultimoIndice,null);
+        }
+        
+        actual.valor = null;
+
+
+
+
+
+
     }
 }
