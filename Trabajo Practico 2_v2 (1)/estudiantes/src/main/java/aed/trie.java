@@ -148,7 +148,7 @@ public class trie<T> {
         actual.valor = null;
 
 
-
+        //verdaderamente habria que chequear si efectivaemnte estoy borrando bien las conexiones de los nodos, pareciera q si.
 
 
 
