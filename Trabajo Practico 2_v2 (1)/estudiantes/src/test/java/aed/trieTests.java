@@ -74,7 +74,47 @@ class trieTests {
 
     }
     
+    @Test
+    void borrar_uno_con_muchos_hijos(){                               //Este Test no lo pasaba, ya que la funcion mas de un hijo
+                                                                    //  devolvia contador < 2, osea devolvia true si tenia 1 hijo o 0.
+        trie<Integer> t = new trie<Integer>();
+        t.insertar("hola",6);
+        t.insertar("holasa",5);
+        t.insertar("holapa",6);
+        t.insertar("holara",5);
+        t.insertar("holagol",6);
+        t.insertar("holayona",5);
+        t.insertar("holaflor",6);
+        t.insertar("holawa",5);
+        t.borrar("hola");
+        assertEquals(false, t.buscar("hola"));
+        assertEquals(true, t.buscar("holapa"));
+    }
 
+    @Test 
+    void borrar_uno_con_un_solo_hijo(){                             //Este test lo pasaba de suerte, por que cuando hay una palabra que tiene como prefijo
+        trie<Integer> t = new trie<Integer>();                      //a la que queremos borrar hay que ver si tiene un solo hijo o mas el nodo actual. Y estabamos chequeando
+        t.insertar("hola",6);                           //que tenga mas de un hijo, pero como la funcion masDeUnHijo estaba mal hecha pasaba el test.
+        t.insertar("holasa",5);
+        t.borrar("hola");
+        assertEquals(false, t.buscar("hola"));
+        assertEquals(true, t.buscar("holasa"));
+    }
+
+    @Test
+    void borrar_uno_que_tenga_difurcacion_grande_antes_de_terminar(){               //Me parece que esto tambien funcionaba de casualidad, siempre el nodo actual "tenia mas de un hijo"
+        trie<Integer> t = new trie<Integer>();                                      //entonces entraba por el if despues del for que chequeaba si tenia mas de un hijo y le sacaba el valor al ultimo nodo.
+        t.insertar("rompecabezas",10);                                  //de esa forma quedaban todos los nodos inutiles dando vueltas.
+        t.insertar("rocola",15);
+        t.insertar("roffo",1);
+        t.insertar("rotfo",1);
+        t.borrar("rompecabezas");
+        assertEquals(false, t.buscar("rompecabezas"));
+        assertEquals(true, t.buscar("rocola"));
+        assertEquals(true, t.buscar("roffo"));
+        assertEquals(true, t.buscar("rotfo"));
+    }
+    
 
     
 }

@@ -109,7 +109,20 @@ public class trie<T> {
                 contador ++;
             }
         }
-        return contador < 2;
+        return contador > 1;                                    //CORECCION: antes contador < 2
+    }
+
+
+    private Boolean tieneUnhijo(Nodo padre){                            //CORRECCION: agrego esta funcion para chequear cuando sale del for.
+        int contador = 0;
+        int i = 0;
+        while ((contador<1)&&i<=256){
+            i ++;
+            if (padre.siguientes.get(i) != null){
+                contador ++;
+            }
+        }
+        return contador == 1;
     }
 
 
@@ -134,8 +147,8 @@ public class trie<T> {
             actual = siguiente;
         }
         //Ahora tocaria borrar hasta el ultimo nodo q tiene valor
-        if (tieneMasDeUnhijo(actual)){
-            ultNodo = actual;                                           //charito --> chari;   charisa, charizote. aca me devuelve el indice de i, y nodo chari (AUTOTESTEO VISUAL)
+        if (tieneUnhijo(actual)){
+            actual.valor = null;                                           //charito --> chari;   charisa, charizote. aca me devuelve el indice de i, y nodo chari (AUTOTESTEO VISUAL)
                                                                          //BORARIA A PARTIR DE chariTTTTTo, osea, borro t y todo lo q le siga a esa t. (solo "o" jiji)   
         }
 
@@ -145,7 +158,7 @@ public class trie<T> {
             ultNodo.siguientes.set(ultimoIndice,null);
         }
         
-        actual.valor = null;
+
 
 
         //verdaderamente habria que chequear si efectivaemnte estoy borrando bien las conexiones de los nodos, pareciera q si.
