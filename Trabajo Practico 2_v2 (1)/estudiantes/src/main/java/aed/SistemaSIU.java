@@ -2,6 +2,11 @@ package aed;
 
 public class SistemaSIU {
 
+    private trie<trie<tuple<String[],Integer[]>>> sistema = new trie<trie<tuple<String[],Integer[]>>>(); //un trie q conecta a tries q conectan a tuplas <alumnos[],numero de docentes[]>
+                                                                                                         //ver estructura esbozada por augustus. 
+
+    private tuple<String[],Integer[]> datosPorMateria = new tuple<String[],Integer[]>(new String[2],new Integer[2]);    //MUY DUDOSO, EN VEZ DE STRING[] USAR LISTAS ENLAZADAS EN MI OPINION.
+
     enum CargoDocente{
         AY2,
         AY1,
@@ -10,7 +15,7 @@ public class SistemaSIU {
     }
 
     public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){
-        throw new UnsupportedOperationException("Método no implementado aún");	    
+        ;	    
     }
 
     public void inscribir(String estudiante, String carrera, String materia){
