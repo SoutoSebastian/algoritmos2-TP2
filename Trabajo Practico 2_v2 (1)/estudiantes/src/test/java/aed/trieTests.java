@@ -8,7 +8,7 @@ class trieTests {
 
     @Test
     void agregarElementos() {
-        trie<Integer> t = new trie<Integer>();
+        Trie<Integer> t = new Trie<Integer>();
         t.insertar("Sebastian",6);
         t.insertar("kiarrrraaa",12);
         t.insertar("Gian",8);
@@ -29,8 +29,8 @@ class trieTests {
     }
 
     @Test
-    void trieVacio() {
-        trie<Integer> t = new trie<Integer>();
+    void TrieVacio() {
+        Trie<Integer> t = new Trie<Integer>();
         assertEquals(false,t.buscar("hola"));
         assertEquals(false,t.buscar(""));
     }       
@@ -38,7 +38,7 @@ class trieTests {
 
     @Test 
     void obteniendo(){
-        trie<Integer> t = new trie<Integer>();
+        Trie<Integer> t = new Trie<Integer>();
         t.insertar("",1);
         t.insertar("hola",8);
         t.insertar("ho",10);
@@ -53,7 +53,7 @@ class trieTests {
 
     @Test
     void borrado(){
-        trie<Integer> t = new trie<Integer>();
+        Trie<Integer> t = new Trie<Integer>();
         t.insertar("hola",8);
         t.insertar("h",99);
         t.insertar("ho",10);
@@ -77,7 +77,7 @@ class trieTests {
     @Test
     void borrar_uno_con_muchos_hijos(){                               //Este Test no lo pasaba, ya que la funcion mas de un hijo
                                                                     //  devolvia contador < 2, osea devolvia true si tenia 1 hijo o 0.
-        trie<Integer> t = new trie<Integer>();
+        Trie<Integer> t = new Trie<Integer>();
         t.insertar("hola",6);
         t.insertar("holasa",5);
         t.insertar("holapa",6);
@@ -93,7 +93,7 @@ class trieTests {
 
     @Test 
     void borrar_uno_con_un_solo_hijo(){                             //Este test lo pasaba de suerte, por que cuando hay una palabra que tiene como prefijo
-        trie<Integer> t = new trie<Integer>();                      //a la que queremos borrar hay que ver si tiene un solo hijo o mas el nodo actual. Y estabamos chequeando
+        Trie<Integer> t = new Trie<Integer>();                      //a la que queremos borrar hay que ver si tiene un solo hijo o mas el nodo actual. Y estabamos chequeando
         t.insertar("hola",6);                           //que tenga mas de un hijo, pero como la funcion masDeUnHijo estaba mal hecha pasaba el test.
         t.insertar("holasa",5);
         t.borrar("hola");
@@ -103,7 +103,7 @@ class trieTests {
 
     @Test
     void borrar_uno_que_tenga_difurcacion_grande_antes_de_terminar(){               //Me parece que esto tambien funcionaba de casualidad, siempre el nodo actual "tenia mas de un hijo"
-        trie<Integer> t = new trie<Integer>();                                      //entonces entraba por el if despues del for que chequeaba si tenia mas de un hijo y le sacaba el valor al ultimo nodo.
+        Trie<Integer> t = new Trie<Integer>();                                      //entonces entraba por el if despues del for que chequeaba si tenia mas de un hijo y le sacaba el valor al ultimo nodo.
         t.insertar("rompecabezas",10);                                  //de esa forma quedaban todos los nodos inutiles dando vueltas.
         t.insertar("rocola",15);
         t.insertar("roffo",1);

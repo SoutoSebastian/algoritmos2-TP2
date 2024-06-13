@@ -1,11 +1,11 @@
 package aed;
 
-public class tuple<t1,t2> {
+public class Tuple<t1,t2> {
     private t1 _primero;
     private t2 _segundo;
 
 
-    public tuple(t1 primero,t2 segundo){
+    public Tuple(t1 primero,t2 segundo){
         _primero = primero;
         _segundo = segundo;
 
