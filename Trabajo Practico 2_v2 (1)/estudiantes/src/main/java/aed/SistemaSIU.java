@@ -12,7 +12,7 @@ public class SistemaSIU {
     //private Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>> datosPorMateria = new Tupla<ListaEnlazada<String>, ListaEnlazada<Integer>>(); //me parece q esto es mas un template, va 
                                                                                                                                               //a cambiar por materia asi q no usar esta
                                                                                                                                               //misma variable.
-    private 
+   
 
 
     enum CargoDocente{
