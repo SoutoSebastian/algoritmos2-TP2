@@ -112,9 +112,13 @@ class trieTests {
         assertEquals(false, t.buscar("rompecabezas"));
         assertEquals(true, t.buscar("rocola"));
         assertEquals(true, t.buscar("roffo"));
-        assertEquals(true, t.buscar("rotfo"));
+        assertEquals(true, t.buscar("rotfo"));                          //muchas casualidades, diferencia de habilidad en mi opinion.
     }
+    //certificado de calidad de giannis que se elimina todo bien!
     
+
+
+
 
     
 }
