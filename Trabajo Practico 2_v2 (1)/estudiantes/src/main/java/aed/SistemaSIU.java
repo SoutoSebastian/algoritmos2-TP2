@@ -36,15 +36,8 @@ public class SistemaSIU {
             for (int i=0; i<infoMaterias.length; i++){
 
 
-                ListaEnlazada<String> listaAlumnos= new ListaEnlazada<>();
-                int[] listaDocentes = new int[3];
                 
-                Trie<Carrera> refACarrera = null; 
-
-                
-
-                Tripla<ListaEnlazada<String>,int[],Trie<Carrera>> datosPorMateriavariable =  
-                new Tripla<ListaEnlazada<String>,int[],Trie<Carrera>>(listaAlumnos, listaDocentes,);
+                Materia materiaVariable = new Materia();
 
                 for (int j=0; j<infoMaterias[0].getParesCarreraMateria().length; j++){
 
@@ -53,16 +46,22 @@ public class SistemaSIU {
                     String nombreCarrera=infoMaterias[i].getParesCarreraMateria()[j].getCarrera();
                     String nombreMateria = infoMaterias[i].getParesCarreraMateria()[j].getNombreMateria();
 
+
+
                     if (sistema.buscar(nombreCarrera) == false){
-                        Trie<Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>>> trieCarrera = new Trie<Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>>>();
-                        sistema.insertar(nombreCarrera,trieCarrera);
+                        Carrera carrera = new Carrera();
+                        sistema.insertar(nombreCarrera,carrera);
 
                     }
 
-                    Trie<Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>>> carrera=sistema.obtener(nombreCarrera);
+                    Carrera refeCarrera=sistema.obtener(nombreCarrera); //esto deberia llevar a Carrera x, q tiene como claves materias.
+
+                    materiaVariable.insertarRefe(nombreMateria, refeCarrera);
+
+                    refeCarrera.agregarMateria(nombreMateria,materiaVariable);
 
 
-                    carrera.insertar(nombreMateria, datosPorMateriavariable);
+                    
                     
 
                 }

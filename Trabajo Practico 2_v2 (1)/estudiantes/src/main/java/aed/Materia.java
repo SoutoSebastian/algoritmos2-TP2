@@ -6,7 +6,7 @@ public class Materia {
     public Materia(){
         ListaEnlazada<String> estudiantes = new ListaEnlazada<String>();
         int[] docentes = new int[4];
-        Trie<Carrera> refACarrera = null;
+        Trie<Carrera> refACarrera = new Trie<Carrera>();
 
         datosXmateria = new Tripla<ListaEnlazada<String>,int[],Trie<Carrera>>(estudiantes, docentes, refACarrera);
     }
@@ -42,6 +42,11 @@ public class Materia {
         return docentes;
     }
 
+    public void insertarRefe(String nombreMateria,Carrera referencia){ //lo estoy definiendo verdaderamente? testear.
+        Trie<Carrera> refe=datosXmateria.getTercero();
+        refe.insertar(nombreMateria, referencia);                             
+        
+    }
 
     public Trie<Carrera> getRefe(){
         
