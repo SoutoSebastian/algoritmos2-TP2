@@ -169,5 +169,30 @@ public class Trie<T> {
 
     }
 
+    private void toStringAux (Nodo n, String p, ListaEnlazada<String> l){
+        
+        if (n == null){
+            return;
+        }else{
+            if(n.valor != null){
+                l.agregarAtras(p);
+            }
+        }
+
+        for(int i = 0; i<265; i++ ){
+            char c = (char) i;
+            toStringAux(n.siguientes.get(i), p + c, l );
+        }
+    }
+
+
+    
+    public String todasLasPalabras(Trie<T> t){
+        ListaEnlazada<String> l = new ListaEnlazada<>();
+        toStringAux(t.raiz, "", l);
+        String res = l.toString();
+        return res;
+    }
+
 
 }
