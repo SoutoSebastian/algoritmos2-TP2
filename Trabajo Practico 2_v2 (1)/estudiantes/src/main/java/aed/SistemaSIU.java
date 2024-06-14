@@ -1,5 +1,7 @@
 package aed;
 
+import org.omg.CORBA.TRANSACTION_MODE;
+
 public class SistemaSIU {
 
     //private trie<trie<tuple<String[],Integer[]>>> sistema = new trie<trie<tuple<String[],Integer[]>>>(); //un trie q conecta a tries q conectan a tuplas <alumnos[],numero de docentes[]>
@@ -7,6 +9,9 @@ public class SistemaSIU {
 
     //private tuple<String[],Integer[]> datosPorMateria = new tuple<String[],Integer[]>(new String[2],new Integer[2]);    //MUY DUDOSO, EN VEZ DE STRING[] USAR LISTAS ENLAZADAS EN MI OPINION.
 
+    private Trie<Carrera> carreras;
+    private Estudiate estudiantes;
+    
     private Trie<Trie<Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>>>> sistema = new Trie<Trie<Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>>>>();
 
     //private Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>> datosPorMateria = new Tupla<ListaEnlazada<String>, ListaEnlazada<Integer>>(); //me parece q esto es mas un template, va 
@@ -22,15 +27,21 @@ public class SistemaSIU {
         PROF
     }
 
+    //tripla va a ser ----> <listastring,listaint,trieMaterias<trieCarrera<Tripla<listastring,listaint,trieMaterias<trieCarrera<Tripla>>>
+
+    //carrera
+
     public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){
             for (int i=0; i<infoMaterias.length; i++){
 
+
                 ListaEnlazada<String> listaAlumnos= new ListaEnlazada<>();
                 ListaEnlazada<Integer> listaDocentes = new ListaEnlazada<>();
+                Trie<Trie<Tripla>>  aliasMaterias = new Trie();
 
 
-                Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>> datosPorMateriavariable =  
-                new Tupla<ListaEnlazada<String>, ListaEnlazada<Integer>>(listaAlumnos, listaDocentes);
+                Tripla<ListaEnlazada<String>,ListaEnlazada<Integer>,Trie> datosPorMateriavariable =  
+                new Tupla<ListaEnlazada<String>, ListaEnlazada<Integer>,Trie>(listaAlumnos, listaDocentes,);
 
                 for (int j=0; j<infoMaterias[0].getParesCarreraMateria().length; j++){
 
