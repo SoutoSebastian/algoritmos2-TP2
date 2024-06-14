@@ -32,8 +32,15 @@ public class SistemaSIU {
 
     //carrera
 
-    public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){
-            for (int i=0; i<infoMaterias.length; i++){
+    public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){         //esto deberia estar finalizado
+
+        for (String libreta : libretasUniversitarias) {
+            estudiantes.añadirLibreta(libreta);
+        }
+            
+        
+        
+        for (int i=0; i<infoMaterias.length; i++){
 
 
                 
