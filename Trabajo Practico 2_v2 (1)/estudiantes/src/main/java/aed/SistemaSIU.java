@@ -10,7 +10,7 @@ public class SistemaSIU {
     //private tuple<String[],Integer[]> datosPorMateria = new tuple<String[],Integer[]>(new String[2],new Integer[2]);    //MUY DUDOSO, EN VEZ DE STRING[] USAR LISTAS ENLAZADAS EN MI OPINION.
 
     private Trie<Carrera> carreras;
-    private Estudiate estudiantes;
+    private Estudiantes estudiantes;
     
     private Trie<Trie<Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>>>> sistema = new Trie<Trie<Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>>>>();
 
