@@ -42,4 +42,9 @@ public class Materia {
         return docentes;
     }
 
+
+    public Trie<Carrera> getRefe(){
+        
+        return datosXmateria.getTercero();
+    }
 }
