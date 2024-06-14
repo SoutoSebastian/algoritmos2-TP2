@@ -10,9 +10,10 @@ public class SistemaSIU {
     //private tuple<String[],Integer[]> datosPorMateria = new tuple<String[],Integer[]>(new String[2],new Integer[2]);    //MUY DUDOSO, EN VEZ DE STRING[] USAR LISTAS ENLAZADAS EN MI OPINION.
 
     private Trie<Carrera> carreras;
+
     private Estudiantes estudiantes;
     
-    private Trie<Trie<Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>>>> sistema = new Trie<Trie<Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>>>>();
+    private Trie<Carrera> sistema = new Trie<Carrera>();
 
     //private Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>> datosPorMateria = new Tupla<ListaEnlazada<String>, ListaEnlazada<Integer>>(); //me parece q esto es mas un template, va 
                                                                                                                                               //a cambiar por materia asi q no usar esta
@@ -36,12 +37,14 @@ public class SistemaSIU {
 
 
                 ListaEnlazada<String> listaAlumnos= new ListaEnlazada<>();
-                ListaEnlazada<Integer> listaDocentes = new ListaEnlazada<>();
-                Trie<Trie<Tripla>>  aliasMaterias = new Trie();
+                int[] listaDocentes = new int[3];
+                
+                Trie<Carrera> refACarrera = null; 
 
+                
 
-                Tripla<ListaEnlazada<String>,ListaEnlazada<Integer>,Trie> datosPorMateriavariable =  
-                new Tupla<ListaEnlazada<String>, ListaEnlazada<Integer>,Trie>(listaAlumnos, listaDocentes,);
+                Tripla<ListaEnlazada<String>,int[],Trie<Carrera>> datosPorMateriavariable =  
+                new Tripla<ListaEnlazada<String>,int[],Trie<Carrera>>(listaAlumnos, listaDocentes,);
 
                 for (int j=0; j<infoMaterias[0].getParesCarreraMateria().length; j++){
 
