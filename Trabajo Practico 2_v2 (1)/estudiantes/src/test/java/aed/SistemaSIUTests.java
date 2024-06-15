@@ -28,7 +28,7 @@ public class SistemaSIUTests {
         SistemaSIU sistema = new SistemaSIU(infoMaterias, estudiantes);
     }
 
-    void realizar_inscripciones(SistemaSIU sistema){
+    void realizar_inscripciones(SistemaSIU sistema){        
         sistema.inscribir(estudiantes[0], "Ciencias de Datos", "Algoritmos1");
         sistema.inscribir(estudiantes[0], "Ciencias de Datos", "Análisis I");
         sistema.inscribir(estudiantes[1], "Ciencias de la Computación", "Intro a la Programación");
