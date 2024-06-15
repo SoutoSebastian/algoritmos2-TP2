@@ -186,74 +186,79 @@ public class ListaEnlazada<T> implements Secuencia<T> {
 
 
 
+ public String[] anidarListaEnlazada(){
+        Iterador<T> iterador = this.iterador();
+        String[] res = new String[this.longitud()] ;
+        //T[] res = new T[this.longitud()];                     // no se puede crear un array generico en java
+        int i =0;
+        while(iterador.haySiguiente()){
+            res[i]= iterador.siguiente().toString();
+            i++;
+        }
+ 
+        return res;
+    }
+
     private class ListaIterador implements Iterador<T> {
-    	// Completar atributos privados
-        private int dedito;
-        ListaIterador() {dedito = -1;}
+        Nodo actual;                        
+
+        public ListaIterador(){
+            actual = _primero;
+        }
 
         public boolean haySiguiente() {
-            
-            
-            if (dedito == -1){
-                if (_primero!=null){
-                    return true;
-                }
-                else{
-                    return false;
-                }
+            boolean res = false;
+            if ( actual != null){    
+                return true;
             }
-            
-            Nodo nodoIntercambiable= _primero;
-            int contador = 0;
-            
-            while (dedito != contador){
-                nodoIntercambiable=nodoIntercambiable.sig;
-                contador=contador+1;
-            }
-            if (nodoIntercambiable==null){
-                return false;
-            }
-            else{
-                return nodoIntercambiable.sig!=null;
-            }
-            
+            return res;
         }
         
         public boolean hayAnterior() {
-            if (dedito==-1){
+            boolean res = false;
+            if(actual == _primero){
                 return false;
             }
-            Nodo nodoIntercambiable= _primero;
-            int contador = 0;
-            while (dedito != contador){
-                nodoIntercambiable=nodoIntercambiable.sig;
-                contador=contador+1;
+            if (actual == _ultimo.sig){
+                return true;
             }
-            if (nodoIntercambiable==null){
-                return false;
+            if ( actual != null ){
+                return true;
             }
-            else{
-                return nodoIntercambiable!=null;
-            }
+            return res;
         }
 
         public T siguiente() {
-            dedito=dedito + 1;
-            return obtener(dedito);
-
+            if (actual != null){
+                T valor = actual.valor;
+                actual = actual.sig;
+                return valor;
+            }
+            else{
+                return null;
+            }
         }
         
-
         public T anterior() {
-	        dedito=dedito-1;
-            return obtener(dedito+1);        
+            if (actual != null){
+                T valor = (actual.ant).valor;
+                actual = actual.ant;
+                return valor;
+            }
+            if (actual == null && hayAnterior()== true){
+                T valor = _ultimo.valor;
+                return valor;
+            }
+            else{
+                return null;
+            }
         }
-    }
+        }
+
 
     public Iterador<T> iterador() {
-	    Iterador<T> iterador = new ListaIterador();
-        return iterador;
+         return new ListaIterador();
     }
+ 
 
 }
- 
