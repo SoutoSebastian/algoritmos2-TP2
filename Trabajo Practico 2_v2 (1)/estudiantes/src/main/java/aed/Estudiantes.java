@@ -10,6 +10,11 @@ public class Estudiantes {
 
     }
 
+    public int materiasInscriptas(String estudiante){
+        int res = estudiantes.obtener(estudiante);
+        return res;
+    }
+
     public void añadirLibreta(String libreta){
         estudiantes.insertar(libreta, 0);
     }

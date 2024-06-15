@@ -121,6 +121,7 @@ public class SistemaSIU {
     }
 
     public int materiasInscriptas(String estudiante){
-        throw new UnsupportedOperationException("Método no implementado aún");	    
+        int res = estudiantes.materiasInscriptas(estudiante);
+        return res;
     }
 }
