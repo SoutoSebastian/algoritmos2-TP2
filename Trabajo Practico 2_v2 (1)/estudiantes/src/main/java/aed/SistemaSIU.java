@@ -1,6 +1,6 @@
 package aed;
 
-import org.omg.CORBA.TRANSACTION_MODE;
+//import org.omg.CORBA.TRANSACTION_MODE;
 
 public class SistemaSIU {
 
@@ -46,7 +46,7 @@ public class SistemaSIU {
                 
                 Materia materiaVariable = new Materia();
 
-                for (int j=0; j<infoMaterias[0].getParesCarreraMateria().length; j++){
+                for (int j=0; j<infoMaterias[i].getParesCarreraMateria().length; j++){
 
                     
 

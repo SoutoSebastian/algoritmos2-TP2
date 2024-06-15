@@ -52,4 +52,74 @@ public class Materia {
         
         return datosXmateria.getTercero();
     }
+
+    public boolean excedeCupoMateria(){
+        boolean res = false;
+
+        if(excedeCupoAY1() || excedeCupoAY2() || excedeCupoJTP() || excedeCupoProf()){
+            res = true;
+        }
+
+        return res;
+    }
+
+
+    private boolean excedeCupoProf(){
+
+        int cantAlumnos = this.cantidadAlumnos();
+        int[] docentes = this.getDocente();
+        boolean res = false;
+
+        if((cantAlumnos/docentes[3]) >= 250){
+            res = true;
+        }
+
+        return res;
+
+    }
+
+
+    private boolean excedeCupoJTP(){
+
+        int cantAlumnos = this.cantidadAlumnos();
+        int[] docentes = this.getDocente();
+        boolean res = false;
+
+        if((cantAlumnos/docentes[2]) >= 100){
+            res = true;
+        }
+
+        return res;
+
+    }
+
+
+    private boolean excedeCupoAY1(){
+
+        int cantAlumnos = this.cantidadAlumnos();
+        int[] docentes = this.getDocente();
+        boolean res = false;
+
+        if((cantAlumnos/docentes[1]) >= 20){
+            res = true;
+        }
+
+        return res;
+
+    }
+
+
+    private boolean excedeCupoAY2(){
+
+        int cantAlumnos = this.cantidadAlumnos();
+        int[] docentes = this.getDocente();
+        boolean res = false;
+
+        if((cantAlumnos/docentes[0]) >= 30){
+            res = true;
+        }
+
+        return res;
+
+    }
 }

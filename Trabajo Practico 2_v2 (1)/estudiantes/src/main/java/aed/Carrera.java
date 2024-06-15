@@ -49,5 +49,14 @@ public class Carrera {
         return res;
     }
 
+    public boolean excedeCupoCarrera(String materia){
+
+        Materia datoMateria = materias.obtener(materia);
+
+        boolean res = datoMateria.excedeCupoMateria();
+
+        return res;
+    }
+
 
 }
