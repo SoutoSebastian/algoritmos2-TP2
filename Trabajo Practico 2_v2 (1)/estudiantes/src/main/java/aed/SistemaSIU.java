@@ -109,11 +109,15 @@ public class SistemaSIU {
     }
 
     public String[] carreras(){
-        throw new UnsupportedOperationException("Método no implementado aún");	    
+        String[] res = sistema.todasLasPalabras();
+        return res;	    
     }
 
     public String[] materias(String carrera){
-        throw new UnsupportedOperationException("Método no implementado aún");	    
+        Carrera trieMaterias = sistema.obtener(carrera);	 
+        String[] res = trieMaterias.todasLasMaterias();
+        
+        return res;
     }
 
     public int materiasInscriptas(String estudiante){

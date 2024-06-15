@@ -187,10 +187,10 @@ public class Trie<T> {
 
 
     
-    public String todasLasPalabras(Trie<T> t){
+    public String[] todasLasPalabras(){
         ListaEnlazada<String> l = new ListaEnlazada<>();
-        toStringAux(t.raiz, "", l);
-        String res = l.toString();
+        toStringAux(this.raiz, "", l);
+        String[] res = l.anidarListaEnlazada();
         return res;
     }
 
