@@ -5,6 +5,11 @@ public class Estudiantes {
     
 
 
+    public Estudiantes(){
+        estudiantes = new Trie<Integer>();
+
+    }
+
     public void añadirLibreta(String libreta){
         estudiantes.insertar(libreta, 0);
     }

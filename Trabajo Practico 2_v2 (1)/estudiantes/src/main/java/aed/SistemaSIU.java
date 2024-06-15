@@ -11,7 +11,7 @@ public class SistemaSIU {
 
     private Trie<Carrera> carreras;
 
-    private Estudiantes estudiantes;
+    private Estudiantes estudiantes= new Estudiantes();
     
     private Trie<Carrera> sistema = new Trie<Carrera>();
 
@@ -80,11 +80,16 @@ public class SistemaSIU {
     }
 
     public void inscribir(String estudiante, String carrera, String materia){
-        throw new UnsupportedOperationException("Método no implementado aún");
+        estudiantes.inscribirEnMateria(estudiante);
+
+        Carrera carreraInscribir=sistema.obtener(carrera);
+        carreraInscribir.agregarAlumnoCarrera(materia, estudiante);
     }
 
     public void agregarDocente(CargoDocente cargo, String carrera, String materia){
-        throw new UnsupportedOperationException("Método no implementado aún");	    
+
+        Carrera carreraInscribir = sistema.obtener(materia); 
+        carreraInscribir.agregarDocenteCarrera(materia, cargo.ordinal());
     }
 
     public int[] plantelDocente(String materia, String carrera){
