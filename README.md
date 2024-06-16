@@ -4,7 +4,9 @@ aca en el readme metan cosas a modificar/observar !!! ~~(borren o tachen cuando 
 
 Queda hacer:
 
-plantelDocente()  \n
-excedeCupo()    \n
+plantelDocente()  
+
+excedeCupo()   
+
 cerrarMateria()
 
