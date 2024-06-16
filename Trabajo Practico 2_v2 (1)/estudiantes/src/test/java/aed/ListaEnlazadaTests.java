@@ -333,4 +333,20 @@ class ListaEnlazadaTests {
         assertEquals(44, it.anterior());
     }
 
+        @Test 
+    void probandoAnidar(){
+        ListaEnlazada<String> lista = new ListaEnlazada<>();
+        String [] paraprobar = {"a","b","c","d"};
+        lista.agregarAtras("a");
+        lista.agregarAtras("b");
+        lista.agregarAtras("c");
+        lista.agregarAtras("d");
+       
+        String[] resultado = lista.anidarListaEnlazada();
+
+        assertArrayEquals(paraprobar, resultado);
+    
+        
+    }
+
 }
