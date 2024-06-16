@@ -88,7 +88,7 @@ public class SistemaSIU {
 
     public void agregarDocente(CargoDocente cargo, String carrera, String materia){
 
-        Carrera carreraInscribir = sistema.obtener(materia); 
+        Carrera carreraInscribir = sistema.obtener(carrera); 
         carreraInscribir.agregarDocenteCarrera(materia, cargo.ordinal());
     }
 
@@ -101,7 +101,9 @@ public class SistemaSIU {
     }
 
     public int inscriptos(String materia, String carrera){
-        throw new UnsupportedOperationException("Método no implementado aún");	    
+        Carrera carreraInscriptos = sistema.obtener(carrera);
+        int inscriptos = carreraInscriptos.cantidadInscriptosCarrera(materia);
+        return inscriptos;
     }
 
     public boolean excedeCupo(String materia, String carrera){
