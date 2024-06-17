@@ -107,7 +107,10 @@ public class SistemaSIU {
     }
 
     public boolean excedeCupo(String materia, String carrera){
-        throw new UnsupportedOperationException("Método no implementado aún");	    
+        Carrera trieMaterias = sistema.obtener(carrera);
+        boolean res = trieMaterias.excedeCupoCarrera(materia);
+        
+        return res;	    
     }
 
     public String[] carreras(){

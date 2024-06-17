@@ -70,8 +70,14 @@ public class Materia {
         int[] docentes = this.getDocente();
         boolean res = false;
 
-        if((cantAlumnos/docentes[3]) >= 250){
-            res = true;
+        if(docentes[3] != 0){
+            if((cantAlumnos/docentes[3]) >= 250){
+                res = true;
+            }
+        }else{
+            if(cantAlumnos>0){
+                res = true;
+            }
         }
 
         return res;
@@ -85,8 +91,14 @@ public class Materia {
         int[] docentes = this.getDocente();
         boolean res = false;
 
-        if((cantAlumnos/docentes[2]) >= 100){
-            res = true;
+        if(docentes[2] != 0){
+            if((cantAlumnos/docentes[2]) >= 100){
+                res = true;
+            }
+        }else{
+            if(cantAlumnos>0){
+                res = true;
+            }
         }
 
         return res;
@@ -100,8 +112,14 @@ public class Materia {
         int[] docentes = this.getDocente();
         boolean res = false;
 
-        if((cantAlumnos/docentes[1]) >= 20){
-            res = true;
+        if(docentes[1] != 0){
+            if((cantAlumnos/docentes[1]) >= 20){
+                res = true;
+            }
+        }else{
+            if(cantAlumnos>0){
+                res = true;
+            }
         }
 
         return res;
@@ -115,8 +133,14 @@ public class Materia {
         int[] docentes = this.getDocente();
         boolean res = false;
 
-        if((cantAlumnos/docentes[0]) >= 30){
-            res = true;
+        if(docentes[0] != 0){
+            if((cantAlumnos/docentes[0]) >= 30){
+                res = true;
+            }
+        }else{
+            if(cantAlumnos>0){
+                res = true;
+            }
         }
 
         return res;
