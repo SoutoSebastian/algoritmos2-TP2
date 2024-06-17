@@ -23,16 +23,16 @@ public class Materia {
     public void agregarDocente(int docente){
         int[] docentes = datosXmateria.getSegundo();
         if(docente == 0){
-           docentes[0] ++;
+           docentes[3] ++;
         }
         if(docente == 1){
-            docentes[1] ++;
-         }
-         if(docente == 2){
             docentes[2] ++;
          }
+         if(docente == 2){
+            docentes[1] ++;
+         }
          if(docente ==3){
-            docentes[3] ++;
+            docentes[0] ++;
          }
         return;
     }
@@ -70,8 +70,10 @@ public class Materia {
         int[] docentes = this.getDocente();
         boolean res = false;
 
-        if(docentes[3] != 0){
-            if((cantAlumnos/docentes[3]) >= 250){
+        if(docentes[0] != 0){
+            double cantAlumnosd = cantAlumnos;
+            double cantDocentes = docentes[0];
+            if((cantAlumnosd/cantDocentes) > 250){
                 res = true;
             }
         }else{
@@ -91,8 +93,10 @@ public class Materia {
         int[] docentes = this.getDocente();
         boolean res = false;
 
-        if(docentes[2] != 0){
-            if((cantAlumnos/docentes[2]) >= 100){
+        if(docentes[1] != 0){
+            double cantAlumnosd = cantAlumnos;
+            double cantDocentes = docentes[1];
+            if((cantAlumnosd/cantDocentes) > 100){
                 res = true;
             }
         }else{
@@ -112,8 +116,10 @@ public class Materia {
         int[] docentes = this.getDocente();
         boolean res = false;
 
-        if(docentes[1] != 0){
-            if((cantAlumnos/docentes[1]) >= 20){
+        if(docentes[2] != 0){
+            double cantAlumnosd = cantAlumnos;
+            double cantDocentes = docentes[2];
+            if((cantAlumnosd/cantDocentes) > 20){
                 res = true;
             }
         }else{
@@ -133,8 +139,10 @@ public class Materia {
         int[] docentes = this.getDocente();
         boolean res = false;
 
-        if(docentes[0] != 0){
-            if((cantAlumnos/docentes[0]) >= 30){
+        if(docentes[3] != 0){
+            double cantAlumnosd = cantAlumnos;
+            double cantDocentes = docentes[3];
+            if((cantAlumnosd/cantDocentes) > 30){
                 res = true;
             }
         }else{
