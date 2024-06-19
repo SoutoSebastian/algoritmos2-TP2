@@ -53,7 +53,7 @@ public class Materia {
         return datosXmateria.getTercero();
     }
 
-    public boolean excedeCupoMateria(){
+    public boolean excedeCupoMateriaOLD(){      //VERSION VIEJA, ABAJO ESTA LA NUEVA
         boolean res = false;
 
         if(excedeCupoAY1() || excedeCupoAY2() || excedeCupoJTP() || excedeCupoProf()){
@@ -153,5 +153,32 @@ public class Materia {
 
         return res;
 
+    }
+
+    public boolean excedeCupoMateria(){
+        boolean res = false;
+        int cantAlumnos = this.cantidadAlumnos();
+        int[] docentes = this.getDocente();
+        int[] cupos = {250,100,20,30};
+        
+        for (int i=0; i < 4; i++){
+            if (docentes[i] != 0){
+                double cantAlumnosd = cantAlumnos;
+                double cantDocentes = docentes[i];
+                if((cantAlumnosd/cantDocentes) > cupos[i]){
+                    res = true;
+                    return res;
+                }
+            }
+            else{
+                if(cantAlumnos>0){
+                    res = true;
+                }
+
+            }
+
+        }
+
+        return res;
     }
 }
