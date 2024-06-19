@@ -93,7 +93,9 @@ public class SistemaSIU {
     }
 
     public int[] plantelDocente(String materia, String carrera){
-        throw new UnsupportedOperationException("Método no implementado aún");	    
+       Carrera trieMaterias = sistema.obtener(carrera);
+        int [] res = trieMaterias.plantelDocenteCarrera(materia);
+        return res;	    
     }
 
     public void cerrarMateria(String materia, String carrera){
