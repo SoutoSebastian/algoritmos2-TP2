@@ -1,14 +1,14 @@
 package aed;
 
 public class Materia {
-    private Tripla<ListaEnlazada<String>,int[],Trie<Carrera>> datosXmateria;
+    private Tripla<ListaEnlazada<String>,int[],ListaEnlazada<Tupla<String,Carrera>>> datosXmateria;
 
     public Materia(){
         ListaEnlazada<String> estudiantes = new ListaEnlazada<String>();
         int[] docentes = new int[4];
-        Trie<Carrera> refACarrera = new Trie<Carrera>();
+        ListaEnlazada<Tupla<String,Carrera>> refACarrera = new ListaEnlazada<Tupla<String,Carrera>>();
 
-        datosXmateria = new Tripla<ListaEnlazada<String>,int[],Trie<Carrera>>(estudiantes, docentes, refACarrera);
+        datosXmateria = new Tripla<ListaEnlazada<String> ,int[] , ListaEnlazada<Tupla<String,Carrera>>> (estudiantes, docentes, refACarrera);
     }
     public void agregarAlumno(String alumno){
         ListaEnlazada<String> alumnos = datosXmateria.getPrimero();
@@ -49,117 +49,18 @@ public class Materia {
 
     }
 
-    public void insertarRefe(String nombreMateria,Carrera referencia){ //lo estoy definiendo verdaderamente? testear.
-        Trie<Carrera> refe=datosXmateria.getTercero();
-        refe.insertar(nombreMateria, referencia);                             
+    public void insertarRefe(String nombreMateria,Carrera referencia){ 
+        ListaEnlazada<Tupla<String,Carrera>> refe= datosXmateria.getTercero();                  
+
+        Tupla<String,Carrera> insertar = new Tupla<String,Carrera>(nombreMateria,referencia) ; 
+
+        refe.agregarAtras(insertar);                             
         
     }
 
-    public Trie<Carrera> getRefe(){
+    public ListaEnlazada<Tupla<String,Carrera>> getRefe(){
         
         return datosXmateria.getTercero();
-    }
-
-    public boolean excedeCupoMateriaOLD(){      //VERSION VIEJA, ABAJO ESTA LA NUEVA
-        boolean res = false;
-
-        if(excedeCupoAY1() || excedeCupoAY2() || excedeCupoJTP() || excedeCupoProf()){
-            res = true;
-        }
-
-        return res;
-    }
-
-
-    private boolean excedeCupoProf(){
-
-        int cantAlumnos = this.cantidadAlumnos();
-        int[] docentes = this.getDocente();
-        boolean res = false;
-
-        if(docentes[0] != 0){
-            double cantAlumnosd = cantAlumnos;
-            double cantDocentes = docentes[0];
-            if((cantAlumnosd/cantDocentes) > 250){
-                res = true;
-            }
-        }else{
-            if(cantAlumnos>0){
-                res = true;
-            }
-        }
-
-        return res;
-
-    }
-
-
-    private boolean excedeCupoJTP(){
-
-        int cantAlumnos = this.cantidadAlumnos();
-        int[] docentes = this.getDocente();
-        boolean res = false;
-
-        if(docentes[1] != 0){
-            double cantAlumnosd = cantAlumnos;
-            double cantDocentes = docentes[1];
-            if((cantAlumnosd/cantDocentes) > 100){
-                res = true;
-            }
-        }else{
-            if(cantAlumnos>0){
-                res = true;
-            }
-        }
-
-        return res;
-
-    }
-
-
-    private boolean excedeCupoAY1(){
-
-        int cantAlumnos = this.cantidadAlumnos();
-        int[] docentes = this.getDocente();
-        boolean res = false;
-
-        if(docentes[2] != 0){
-            double cantAlumnosd = cantAlumnos;
-            double cantDocentes = docentes[2];
-            if((cantAlumnosd/cantDocentes) > 20){
-                res = true;
-            }
-        }else{
-            if(cantAlumnos>0){
-                res = true;
-            }
-        }
-
-        return res;
-
-    }
-
-
-    private boolean excedeCupoAY2(){
-
-        int cantAlumnos = this.cantidadAlumnos();
-        int[] docentes = this.getDocente();
-        boolean res = false;
-
-        if(docentes[3] != 0){
-            double cantAlumnosd = cantAlumnos;
-            double cantDocentes = docentes[3];
-            if((cantAlumnosd/cantDocentes) > 30){
-                res = true;
-            }
-        }else{
-            if(cantAlumnos>0){
-                res = true;
-            }
-        }
-
-        return res;
-
     }
 
     public boolean excedeCupoMateria(){
