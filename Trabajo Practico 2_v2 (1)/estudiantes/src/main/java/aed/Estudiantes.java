@@ -25,4 +25,10 @@ public class Estudiantes {
         estudiantes.insertar(libreta, materiasAnotadas+1);
 
     }
+
+    public void desinscribirEnMateria (String libreta){
+        Integer materiasAnotadas=estudiantes.obtener(libreta);
+
+        estudiantes.insertar(libreta, materiasAnotadas-1);
+    }
 }
