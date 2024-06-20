@@ -42,6 +42,13 @@ public class Materia {
         return docentes;
     }
 
+    public ListaEnlazada<String> getAlumnos(){
+
+        ListaEnlazada<String> alumnos = datosXmateria.getPrimero();
+        return alumnos;
+
+    }
+
     public void insertarRefe(String nombreMateria,Carrera referencia){ //lo estoy definiendo verdaderamente? testear.
         Trie<Carrera> refe=datosXmateria.getTercero();
         refe.insertar(nombreMateria, referencia);                             
