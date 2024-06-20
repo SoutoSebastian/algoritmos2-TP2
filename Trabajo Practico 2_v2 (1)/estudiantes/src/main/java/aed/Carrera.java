@@ -65,5 +65,16 @@ public class Carrera {
         return res;
     }
 
+    public void eliminarMateria(String materia){
+        
+        materias.borrar(materia);
+    }
+
+    public Materia getMateria (String materia){
+
+       return materias.obtener(materia);
+    }
+
+
 
 }
