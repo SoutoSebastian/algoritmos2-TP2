@@ -75,6 +75,16 @@ public class Carrera {
        return materias.obtener(materia);
     }
 
+    public ListaEnlazada<String> obtenerAlumnos(String materia){
+        ListaEnlazada<String> alumnos = materias.obtener(materia).getAlumnos();
+        return alumnos;
+    }
+
+    public ListaEnlazada<Tupla<String,Carrera>> obtenerRefe(String materia){
+        ListaEnlazada<Tupla<String,Carrera>> refeCarrera = materias.obtener(materia).getRefe();
+        return refeCarrera;
+    }
+
 
 
 }
