@@ -98,40 +98,31 @@ public class SistemaSIU {
         return res;	    
     }
 
-    public void cerrarMateria(String materia, String carrera) {
+   public void cerrarMateria(String materia, String carrera) {
         Carrera trieMaterias = sistema.obtener(carrera); // el trie de materias de la carrera q me pasan
-        
-        Materia datosMateria = trieMaterias.getMateria(materia); // la tripla q define a la materia q me pasan
-        
-        Trie<Carrera> trieCarreras = datosMateria.getRefe(); // trie de todas las carreras que tiene esa materia
-    
-        String[] listaCarreras = trieCarreras.todasLasPalabras(); // paso ese trie a lista
        
-        ListaEnlazada<String> listaEstudiantes = datosMateria.getAlumnos();
+        ListaEnlazada<String> listaEstudiantes = trieMaterias.obtenerAlumnos(materia);
+        
+
         for (int i=0; i<listaEstudiantes.longitud(); i++){ // a todos los estuantes que estaban anotados, 
                                                       // les bajo uno en la cantidad de materias que cursan 
             estudiantes.desinscribirEnMateria((listaEstudiantes.obtener(i)));
         }
 
-        // ACA ARRANCAN LOS PROBLEMAS
+        ListaEnlazada<Tupla<String,Carrera>> referencia = trieMaterias.obtenerRefe(materia);
+       
+        for (int j=0; j<referencia.longitud(); j++){       //recorro la refe
+            Tupla<String,Carrera> tupla = referencia.obtener(j);
+            String nombreMateria = tupla.getPrimero();
+            Carrera nombreCarrera = tupla.getSegundo();
+            nombreCarrera.eliminarMateria(nombreMateria);   //elimino la materia con el nombre que tenga para cada carrera que este en la lista de tuplas
 
-        //for (int j=0; j<listaCarreras.length; j++ ){ // for carrera in listacarreras
-          //  Carrera materias = sistema.obtener((listaCarreras[j])); //agarro el trie con todas las materias de esa carrera
-            //String[] listaMaterias = materias.todasLasMaterias(); // paso todas las materias a lista
-    
-            //for (int k=0; k<listaMaterias.length; k++){ // recorro todas las materias
-              //  Materia materiaalias = materias.getMateria(listaMaterias[k]);
-    
-                //if (materiaalias.equals(datosMateria)){
-                  //  materias.eliminarMateria(listaMaterias[k]); // si son la misma materia que la mteria que puse, la borro
-                //}
-            //}
-    
-        //} 
+        }
+
+     
 
         
     }
-
 
     public int inscriptos(String materia, String carrera){
         Carrera carreraInscriptos = sistema.obtener(carrera);
