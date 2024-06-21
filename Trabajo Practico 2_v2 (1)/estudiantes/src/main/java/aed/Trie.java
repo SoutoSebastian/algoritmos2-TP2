@@ -129,43 +129,44 @@ public class Trie<T> {
 
 
     public void borrar(String clave){
-        Nodo actual = raiz;
-        Nodo ultNodo = null;                                                //GUARDO EN ULTNODO (MIENTRAS VOY BAJANDO) AQUEL NODO Q TENGA MAS DE UN HIJO O Q TENGA SIGNIFICADO
-                                                                            //SI TIENE ALGUNA DE ESTAS 2, NO PUEDO BORRAR ESE NODO!!! SI NO PIERDO COSAS Q NO QUIERO PERDER.
-                                                                            //----> VER EJEMPLO VISUAL DE BORRAR CHARITO, CON CHARI CON SIGNFICADO Y CHARISA, CHARIZOTE TAMBIEN CON SIGN.
-        int ultimoIndice = 0;
 
-        for (int i=0; i< clave.length(); i++){
-            char letra = clave.charAt(i);
-            int indice = (int) letra;
-            Nodo siguiente = actual.siguientes.get(indice);
-            
-            if (actual.valor!=null || tieneMasDeUnhijo(actual)){
-                ultNodo = actual;
-                ultimoIndice = indice;                                       //charito --> chari;   charisa, charizote. aca me devuelve el indice de i, y nodo chari (AUTOTESTEO VISUAL)
-                                                                             //BORARIA A PARTIR DE chariTTTTTo, osea, borro t y todo lo q le siga a esa t. (solo "o" jiji)   
+        if(this.todasLasPalabras().length == 1){
+            raiz = null;
+
+        }else{
+
+            Nodo actual = raiz;
+            Nodo ultNodo = null;                                                //GUARDO EN ULTNODO (MIENTRAS VOY BAJANDO) AQUEL NODO Q TENGA MAS DE UN HIJO O Q TENGA SIGNIFICADO
+                                                                                //SI TIENE ALGUNA DE ESTAS 2, NO PUEDO BORRAR ESE NODO!!! SI NO PIERDO COSAS Q NO QUIERO PERDER.
+                                                                                //----> VER EJEMPLO VISUAL DE BORRAR CHARITO, CON CHARI CON SIGNFICADO Y CHARISA, CHARIZOTE TAMBIEN CON SIGN.
+            int ultimoIndice = 0;
+
+            for (int i=0; i< clave.length(); i++){
+                char letra = clave.charAt(i);
+                int indice = (int) letra;
+                Nodo siguiente = actual.siguientes.get(indice);
+                
+                if (actual.valor!=null || tieneMasDeUnhijo(actual)){
+                    ultNodo = actual;
+                    ultimoIndice = indice;                                       //charito --> chari;   charisa, charizote. aca me devuelve el indice de i, y nodo chari (AUTOTESTEO VISUAL)
+                                                                                //BORARIA A PARTIR DE chariTTTTTo, osea, borro t y todo lo q le siga a esa t. (solo "o" jiji)   
+                }
+
+                actual = siguiente;
+            }
+            //Ahora tocaria borrar hasta el ultimo nodo q tiene valor
+            if (tieneUnhijo(actual)){
+                actual.valor = null;                                           //charito --> chari;   charisa, charizote. aca me devuelve el indice de i, y nodo chari (AUTOTESTEO VISUAL)
+                                                                            //BORARIA A PARTIR DE chariTTTTTo, osea, borro t y todo lo q le siga a esa t. (solo "o" jiji)   
             }
 
-            actual = siguiente;
-        }
-        //Ahora tocaria borrar hasta el ultimo nodo q tiene valor
-        if (tieneUnhijo(actual)){
-            actual.valor = null;                                           //charito --> chari;   charisa, charizote. aca me devuelve el indice de i, y nodo chari (AUTOTESTEO VISUAL)
-                                                                         //BORARIA A PARTIR DE chariTTTTTo, osea, borro t y todo lo q le siga a esa t. (solo "o" jiji)   
-        }
 
 
-
-        else{                                           //en este caso, borro a partir del indice obtenido.
-            ultNodo.siguientes.set(ultimoIndice,null);
+            else{                                           //en este caso, borro a partir del indice obtenido.
+                ultNodo.siguientes.set(ultimoIndice,null);
+            }
         }
         
-
-
-
-        //verdaderamente habria que chequear si efectivaemnte estoy borrando bien las conexiones de los nodos, pareciera q si.
-
-
 
     }
 
