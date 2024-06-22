@@ -207,7 +207,8 @@ public class Trie<T> {
 
 
 //Utilizo toStringAux que recorre todo el trie agregando cada clave a una lista enlazada, y cuando la obtengo la paso a un array de strings que es lo que devuelvo
-//Complejidad:O(CantNodos)
+//Complejidad:O(CantNodos) en el peor caso ninguna palabra comparte nodos, entonces la complejidad podria escribirse como: O(sum |palabra|) una sumatoria de las 
+//longitudes de todas las palabras.
 
 
 }

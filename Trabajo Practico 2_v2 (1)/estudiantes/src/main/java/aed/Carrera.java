@@ -86,13 +86,13 @@ public class Carrera {
 
     public String[] todasLasMaterias(){
 
-        String[] res = materias.todasLasPalabras();                                                         //complejidad sin hacer
+        String[] res = materias.todasLasPalabras();                                                         
         return res;
     }
 
 //En el trie de la carrera, enlaza todas sus claves en un array y lo devuelve dando como respuesta todas las materias de una carrera
-//Complejidad: O(|Materias| + la suma de la longitud de cada materia disntinta)
-
+//Complejidad: O(sum |mc|) mc siendo cada materia de la carrera.
+ 
 
 
     //public void eliminarMateria(String materia){                                                  //esto esta repetido 
