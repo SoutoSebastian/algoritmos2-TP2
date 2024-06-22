@@ -2,11 +2,13 @@ package aed;                                                    //falta invarian
 
 public class Estudiantes {
     private Trie<Integer> estudiantes;        //yo no puse eso me jijeo---> //Lista enlazad va a tener nombres de las materias.
-/* 
-*   Invariante de repeticion de Estudiantes:
-*
-*
-*/    
+/*
+ *  Invariante de representación de Estudiantes:
+ *  las claves de los tries son Strings "int/int" y Los valores son Integer >= 0.
+ * 
+ * 
+ * 
+ */
 
 //Observación: |estudiante| está acotada 
     public Estudiantes(){                                                      

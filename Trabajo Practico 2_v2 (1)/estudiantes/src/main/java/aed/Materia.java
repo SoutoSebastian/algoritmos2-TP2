@@ -2,8 +2,15 @@ package aed;                                        //falta invariante y complej
 
 public class Materia {
     /*
- * Invariante de representación de la clase materia:
+ * Invariante de representación de la clase Materia:
+ * La lista enlazada estudiantes contiene todos los estudiantes inscriptos en la materia. Los elementos son Strings que representas sus LU. "int/int" con ints naturales.
+ * Cada posicion de docente es mayor o igual a 0.
+ * refACarrera funciona como un diccionario para las carreras. La lista contiene los alias de las materias y las referencias de sus carreras.
+ * El primer valor tendra el string de un posible nombre de la materia por cada carrera, con el segundo valor siendo la referencia a justamente esta Carrera.
+ * Ninguna tupla puede ser igual a la otra en toda la lista, ya que esta representa los aliases por cada carrear distinta. Es decir, un alias se podria
+ * repetir, pero no la carrera a la que hace referencia.
  * 
+ * datosXmateria es una tripls de los 3 elementos de arriba, con estudiantes primero, docentes segundo, y refACarrera tercero.
  * 
  */
     private Tripla<ListaEnlazada<String>,int[],ListaEnlazada<Tupla<String,Carrera>>> datosXmateria;
@@ -19,7 +26,8 @@ public class Materia {
 //anotados a esa materia, en segundo lugar va a tener un array de enteros con los docentes de esa materia, por último va a tener una lista enlazada con tuplas.
 //Cada posición de esta lista enlazada es una carrera a la que pertence esa materia y cuando accedemos a la tupla, en su primer posicion vamos a tener el nombre de la 
 //materia en esa carrera, y la segunda coordenada nos encontramos con una referencia al trie de esa carrera. Al estructurarlo de esta forma 
-//Al estructurarlo de esta forma cumplimos con el encapsulamiento y las complejidades.
+//cumplimos con el encapsulamiento y las complejidades.
+
     public void agregarAlumno(String alumno){
         ListaEnlazada<String> alumnos = datosXmateria.getPrimero();
 
