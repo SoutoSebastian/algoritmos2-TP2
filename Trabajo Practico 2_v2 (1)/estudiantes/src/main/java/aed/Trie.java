@@ -206,7 +206,7 @@ public class Trie<T> {
     }
 
 
-//Utilizo toStringAux que recorre todo el nodo agregando cada clave a una lista enlazada, y cuando la obtengo la paso a un array de strings que es lo que devuelvo
+//Utilizo toStringAux que recorre todo el trie agregando cada clave a una lista enlazada, y cuando la obtengo la paso a un array de strings que es lo que devuelvo
 //Complejidad:O(CantNodos)
 
 
