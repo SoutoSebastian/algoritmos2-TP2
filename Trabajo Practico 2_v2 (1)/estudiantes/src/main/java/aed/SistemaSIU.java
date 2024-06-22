@@ -1,8 +1,12 @@
-package aed;
-
+package aed;                                                        //falta invariante
+                                                                    //comentar SistemaSIU y su costo
+                                                                    //costo de cerrar materia
+                                                                    //costo de pasar el array de materias
+                                                                    //costo de pasar el array de carreras
+                                                                    // y revisar todo ya q estamos no
 public class SistemaSIU {
     /*
-     *    Invariante de repetición de SistemaSIU:
+     *    Invariante de representación de SistemaSIU:
      * 
      * 
      */
@@ -54,33 +58,36 @@ public class SistemaSIU {
 //Complejidad:O()
 
     public void inscribir(String estudiante, String carrera, String materia){
-        estudiantes.inscribirEnMateria(estudiante);
 
-        Carrera carreraInscribir=sistema.obtener(carrera);
-        carreraInscribir.agregarAlumnoCarrera(materia, estudiante);
+        estudiantes.inscribirEnMateria(estudiante);                             //O(1)
+        Carrera carreraInscribir=sistema.obtener(carrera);                      //O(|Carrera|) 
+        carreraInscribir.agregarAlumnoCarrera(materia, estudiante);             //O(|Materia|)
         
     }
 
-//
-//Complejidad:O()
+//Accedo a la materia que es la clave de carrera a través del trie del sistema, luego recorro la longitud de la palabra materia, 
+//entro en su primer coordenada y agrego el numero de libreta. En el trie de estudiantes recorro su clave O(1) por ser acotado
+//y sumo uno en su valor que las cantidad de materias en las que está anotado.
+//Complejidad:O(|Carrera| + |Materia|)
 
     public void agregarDocente(CargoDocente cargo, String carrera, String materia){
 
-        Carrera carreraInscribir = sistema.obtener(carrera); 
-        carreraInscribir.agregarDocenteCarrera(materia, cargo.ordinal());
+        Carrera carreraInscribir = sistema.obtener(carrera);                   //O(|Carrera|) 
+        carreraInscribir.agregarDocenteCarrera(materia, cargo.ordinal());      //O(|Materia|)
     }
 
-//
-//Complejidad:O()
+//Accedo a la materia que es la clave de carrera a través del trie del sistema,luego por medio de agregarDocenteCarrera accedo a la materia
+//y según el cargo del docente sumo uno en los datos que tiene la materia.
+//Complejidad: O(|Carrera| + |Materia|)
 
     public int[] plantelDocente(String materia, String carrera){
-       Carrera trieMaterias = sistema.obtener(carrera);
-        int [] res = trieMaterias.plantelDocenteCarrera(materia);
+       Carrera trieMaterias = sistema.obtener(carrera);                     //O(|Carrera|)
+        int [] res = trieMaterias.plantelDocenteCarrera(materia);           //O(|Materia|)
         return res;	    
     }
 
-//
-//Complejidad:O()
+//Accedo a la materia que es la clave de carrera a través del trie del sistema, luego accedo y devuelvo el segundo valor de su tripla que es una array de enteros.
+//Complejidad: O(|Carrera| + |Materia|)
 
     public void cerrarMateria(String materia, String carrera){
         Carrera trieMaterias = sistema.obtener(carrera);
@@ -88,16 +95,17 @@ public class SistemaSIU {
     }
 
 //
-//Complejidad:O()
+//Complejidad: O()
 
     public int inscriptos(String materia, String carrera){
-        Carrera carreraInscriptos = sistema.obtener(carrera);
-        int inscriptos = carreraInscriptos.cantidadInscriptosCarrera(materia);
+        Carrera carreraInscriptos = sistema.obtener(carrera);                       //O(|Carrera|)
+        int inscriptos = carreraInscriptos.cantidadInscriptosCarrera(materia);      //O(|Materia|)
         return inscriptos;
     }
 
-//
-//Complejidad:O()
+//Recorre el trie buscando la carrera y accede a su valor, cuando obtenemos la materia, la recorro y accedo al primer dato de su tripla que es la lista enlazada de alumnos.
+//y con el atributo _longitud de lista enlazada devuelvo su longitud con costo O(1)
+//Complejidad: O(|Carrera| + |Materia|)
 
     public boolean excedeCupo(String materia, String carrera){             
         Carrera trieMaterias = sistema.obtener(carrera);                //O(|Carrera|)
@@ -106,16 +114,16 @@ public class SistemaSIU {
         return res;	    
     }
 
-//Accedo a al trie de materias de la carrera, luego busco la materia y devuelvo si es que excede cupo
-//Complejidad:O(|Carrera| + |Materia|), la comlejitud se la da buscar el nombre de la carrera y luego la materia, ya que excedeCupo como función auxiliar es O(1)
+//Accedo a al trie de materias de la carrera, luego busco la materia y devuelvo si es que excede cupo.
+//Complejidad: O(|Carrera| + |Materia|), la complejidad se la da buscar el nombre de la carrera y luego la materia, ya que excedeCupo como función auxiliar es O(1).
 
     public String[] carreras(){
         String[] res = sistema.todasLasPalabras();
         return res;	    
     }
 
-//
-//Complejidad:O()
+//Recorre el trie del sistema y devuelve todas las claves que contiene en formato de array de strings que son el nombre de las carreras.
+//Complejidad: O()
 
     public String[] materias(String carrera){
         Carrera trieMaterias = sistema.obtener(carrera);	 //O(|Carrera|) recorre el trie y tiene como costo la longitud de letras de la carrera
@@ -124,8 +132,8 @@ public class SistemaSIU {
         return res;
     }
     //REVISAR
-//Recorre el nombre de la carrera en el trie y toma su valor que es un trie de materias, luego enlaza todas sus valores a un array que devuelve
-//Complejidad:O(|Carrera| +|Cantidad de materias|*longitud de cada uno de sus nombres), la funcion todasLasMaterias lo que hace es recorrer todo el trie de carrera
+//Recorre el nombre de la carrera en el trie y toma su valor que es un trie de materias, luego enlaza todas sus valores a un array que devuelve.
+//Complejidad: O(|Carrera| +|Cantidad de materias|*longitud de cada uno de sus nombres), la funcion todasLasMaterias lo que hace es recorrer todo el trie de carrera
 // y enlazar cada clave a un array de strings
 
 
@@ -134,7 +142,7 @@ public class SistemaSIU {
         return res;
     }
 
-//Recorre el trie que tiene como clave el LU del estudiante y devuelve su valor que es la cantidad de materias en las que está inscripto/a
-//Complejidad:O(1), al ser acotado el string del estudiante, recorrer el trie y obtener su valor tiene costo O(1)
+//Recorre el trie que tiene como clave el LU del estudiante y devuelve su valor que es la cantidad de materias en las que está inscripto/a.
+//Complejidad: O(1), al ser acotado el string del estudiante, recorrer el trie y obtener su valor tiene costo O(1)
 
 }
