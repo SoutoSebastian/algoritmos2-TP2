@@ -32,23 +32,8 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     }
 
 //Incio la lista doblemente enlazada
-//Costo: O(1)    
-                                                                                    //CAMBIO LONGITUD ENVES DE METODO PASA A SER UNA ATRIBUTO
-//    public int longitud() {
-//        int res = 0;
-//        Nodo nodoIntercambiable = new Nodo(null);       
-//        nodoIntercambiable = _primero;
-//        
-//        while (nodoIntercambiable!=null){               //esto ??---->//no ver solo primero, ver mas! REVISAR
-//            res=res+1;
-//            nodoIntercambiable=nodoIntercambiable.sig;
-//            
-//        }
-//        return res;
-//    }
+//Complejidad: O(1)    
 
-//Recorro la lista sumando uno en cada nodo para ver su longitud
-//Costo: O(|Lista|)
 public int longitud() {
     return _longitud;
 }
@@ -67,7 +52,7 @@ public int longitud() {
     }
 
 //Agrego un nodo al principio a través de los punteros
-//Costo:O(1) son asignaciones 
+//Complejidad: O(1) son asignaciones 
 
     public void agregarAtras(T elem) {
         Nodo nuevo = new Nodo(elem);
@@ -84,8 +69,8 @@ public int longitud() {
         _longitud++;
     }
 
-//Agrego un nodo al final a través de los punteros
-//Costo:O(1) son asignaciones 
+//Agrego un nodo al final a través de los punteros.
+//Complejidad: O(1) son asignaciones 
 
     public T obtener(int i) {
         int contador = 0;
@@ -98,8 +83,8 @@ public int longitud() {
         return nodoIntercambiable.valor;
     }
 
-//Recorro la lista hasta estar en la posición del nodo que busco y devuelvo su valor
-//Costo:O(|Lista|)
+//Recorro la lista hasta estar en la posición del nodo que busco y devuelvo su valor.
+//Complejidad: O(|Lista|)
 
     private Nodo elegirNodo(int i){
         Nodo nodoIntercambiable = _primero;
@@ -112,8 +97,8 @@ public int longitud() {
         return nodoIntercambiable;
     }
 
-//Recorro la lista hasta estar en la posición del nodo que busco y lo devuelvo
-//Costo:O(|Lista|)
+//Recorro la lista hasta estar en la posición del nodo que busco y lo devuelvo.
+//Complejidad: O(|Lista|)
 
     public void eliminar(int i) {
         
@@ -142,8 +127,8 @@ public int longitud() {
         _longitud--;
     }
 
-//Recorro la lista buscando el nodo que quiero eliminar, y segun donde se encuentre, hago asignaciones para desprenderlo de la lista
-//Costo:O(|Lista|) recorro el nodo O(|Lista|) y luego hago asignaciones a traés de if O(1)  
+//Recorro la lista buscando el nodo que quiero eliminar, y segun donde se encuentre, hago asignaciones para desprenderlo de la lista.
+//Costo: O(|Lista|) recorro el nodo O(|Lista|) y luego hago asignaciones a través de if O(1)  
 
     public void modificarPosicion(int indice, T elem) {
         Nodo newNodo= new Nodo(elem);
@@ -164,8 +149,8 @@ public int longitud() {
         }
     }
 
-//Recorro la lista hasta estar en la posición que quiero modificar, y segun donde se encuentre, le asgino un nodo nuevo con el valor que quiero poner
-//Costo:O(|Lista|), recorro el nodo O(|Lista|) y luego hago asignaciones a traés de if O(1) 
+//Recorro la lista hasta estar en la posición que quiero modificar, y según donde se encuentre, le asgino un nodo nuevo con el valor que quiero poner.
+//Complejidad: O(|Lista|), recorro el nodo O(|Lista|) y luego hago asignaciones a través de if O(1) 
 
     public ListaEnlazada<T> copiar() {
         ListaEnlazada<T> ListaNueva = new ListaEnlazada<T>();
@@ -178,7 +163,7 @@ public int longitud() {
         return ListaNueva; 
     }
 //Creo una nueva lista y luego recorro la que quiero copiar, y en cada posicion de la original, obtengo su valor y lo asigno a la que quiero copiar
-//Costo:O(|Lista|), tengo que recorrer toda la lista O(|Lista|) y luego agregoAtras cada posicion O(1)
+//Complejidad:O(|Lista|), tengo que recorrer toda la lista O(|Lista|) y luego agregoAtras cada posicion O(1)
 
    // public ListaEnlazada(ListaEnlazada<T> lista) {                              //revisar creo que trae aliasing igual se usa solo para el test de lista enlazada
                                                                                     //LO CAMBIE PARA CUMPLIR COMPLEJIDADES
@@ -199,8 +184,8 @@ public int longitud() {
           }
       }
 
-//Paso una lista como parametro y agrego cada elemento de la lista a la nueva, que es la que devuelvo
-//Costo:O(|Lista|), recorro cada posición de la lista original por eso tengo como complejidad la longitud de la lista
+//Paso una lista como parametro y agrego cada elemento de la lista a la nueva, que es la que devuelvo.
+//Complejidad: O(|Lista|), recorro cada posición de la lista original por eso tengo como complejidad la longitud de la lista
 
     @Override
     public String toString() {
@@ -217,7 +202,7 @@ public int longitud() {
         return sbuffer.toString();
     }
 
-//Recorro la lista con un iterador, y en cada posicion concateno su valor en un string                
+//Recorro la lista con un iterador, y en cada posición concateno su valor en un string.                
 //Complejidad:O(|lista|),al recorrer la lista con un iterador cada paso es 0(1) multiplicado por la cantidad de veces que reocrro la lista    y                   ¿¿¿¿¿luego lo concateno en un string O(1)???????????
 
  public String[] anidarListaEnlazada(){
@@ -231,7 +216,7 @@ public int longitud() {
         return res;
     }
 
-//Recorro la lista a través de un iterador, si hay siguiente pongo el actual valor en un array por medio de una asignacion y un toString para que cumpla con el tipado del metodo
+//Recorro la lista a través de un iterador, si hay siguiente pongo el actual valor en un array por medio de una asignación y un toString para que cumpla con el tipado del método.
 //Complejidad:O(|Lista|)
 
     private class ListaIterador implements Iterador<T> {
@@ -241,7 +226,7 @@ public int longitud() {
             actual = _primero;
         }
 
-//Inicio el iterador
+//Inicio el iterador.
 //Complejidad: O(1)
 
         public boolean haySiguiente() {
@@ -252,7 +237,7 @@ public int longitud() {
             return res;
         }
 
-//Si el actual no es null, entonces tengo siguiente porque puedo avanzar
+//Si el actual no es null, entonces tengo siguiente porque puedo avanzar.
 //Complejidad: O(1)
 
         public boolean hayAnterior() {
@@ -269,7 +254,7 @@ public int longitud() {
             return res;
         }
 
-//Si es el primero no hay anterior, pero si no es null o estoy en el siguiente al ultimo si lo hay
+//Si es el primero no hay anterior, pero si no es null o estoy en el siguiente al último si lo hay.
 //Complejidad: O(1)
 
         public T siguiente() {
@@ -283,7 +268,7 @@ public int longitud() {
             }
         }
 
-//Devuelvo el actual valor, y avanzo un nodo
+//Devuelvo el actual valor, y avanzo un nodo.
 //Complejidad: O(1)  
 
         public T anterior() {
@@ -303,7 +288,7 @@ public int longitud() {
         }
     }
 
-//Devuelvo el anterior valor, y retocedo un nodo
+//Devuelvo el anterior valor, y retrocedo un nodo.
 //Complejidad: O(1) 
        
 
@@ -311,7 +296,7 @@ public int longitud() {
          return new ListaIterador();
     }
 
-//Nos permite utlizar el iterador
+//Nos permite utlizar el iterador.
 //Complejidad: O(1)
 
 }

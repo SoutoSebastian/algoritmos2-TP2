@@ -42,13 +42,13 @@ public class Carrera {
 
         Materia datoMateria = materias.obtener(materia);    //O(|materia|)
 
-        int res = datoMateria.cantidadAlumnos();            //O(|alumnos|)
+        int res = datoMateria.cantidadAlumnos();            //O(1)
 
         return res;
     }
 
-//Accede a la materia y luego recorre toda la lista enlazada de los estudiantes sumando 1 para dar su cantidad
-//Complejidad:O(|materia| + |alumnos|)
+//Accede a la materia y luego accede a la lista enlazada de los estudiantes y utliza el atributo _longitud para dar su cantidad
+//Complejidad:O(|materia|)
 
     public void agregarDocenteCarrera(String materia, int docente){
 

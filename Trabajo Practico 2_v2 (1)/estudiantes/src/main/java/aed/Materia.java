@@ -26,7 +26,7 @@ public class Materia {
         alumnos.agregarAtras(alumno);
     }
 
-//Agregamos un alumno en la primer coordenada
+//Agregamos un alumno en la primer coordenada.
 //Complejidad: O(1)
 
     public int cantidadAlumnos(){
@@ -36,7 +36,7 @@ public class Materia {
     }
 
 //Accedo a la primer posicion de la tripla y luego devuelvo su longitud que lo tengo como atributo en lista enlazada esto cumple con su real longitud
-// gracias a que cada vez que aegrego un elemento le sumo uno a su longitud, lo que hace que la complejitud sea O(1)
+// gracias a que cada vez que aegrego un elemento le sumo uno a su longitud, lo que hace que la complejitud sea O(1).
 //Complejidad: O(1)
 
     public void agregarDocente(int docente){
@@ -56,15 +56,15 @@ public class Materia {
         return;
     }
 
-//Tomo el segundo elemento de la tripla, luego según que docente sea sumo uno en la posición correspondiente del array
-//Complejidad:O(1), analizo un if y luego hago asignaciones 
+//Tomo el segundo elemento de la tripla, luego según que docente sea sumo uno en la posición correspondiente del array.
+//Complejidad: O(1), analizo un if y luego hago asignaciones 
 
     public int[] getDocente(){
         int[] docentes = datosXmateria.getSegundo();
         return docentes;
     }
 
-//Tomo el segundo elemento de la tripla y lo devuelvo
+//Tomo el segundo elemento de la tripla y lo devuelvo.
 //Complejidad: O(1)
 
     public ListaEnlazada<String> getAlumnos(){
@@ -74,7 +74,7 @@ public class Materia {
 
     }
 
-//Tomo el primer elemento de la tripla y lo devuelvo
+//Tomo el primer elemento de la tripla y lo devuelvo.
 //Complejidad: O(1)
 
 public ListaEnlazada<Tupla<String,Carrera>> getRefe(){
@@ -82,7 +82,7 @@ public ListaEnlazada<Tupla<String,Carrera>> getRefe(){
     return datosXmateria.getTercero();
 }
 
-//Tomo el tercer elemento de la tripla y lo devuelvo
+//Tomo el tercer elemento de la tripla y lo devuelvo.
 //Complejidad: O(1)
 
     public void insertarRefe(String nombreMateria,Carrera referencia){ 
@@ -94,8 +94,8 @@ public ListaEnlazada<Tupla<String,Carrera>> getRefe(){
         
     }
 
-//Creo una tupla con los parametros de entrada y luego la agrego en la tercer coordenada de la tripla
-//Complejidad: O(1), agregaratras en una lista enlazada tiene costo O(1)
+//Creo una tupla con los parametros de entrada y luego la agrego en la tercer coordenada de la tripla.
+//Complejidad: O(1), agregarAtras en una lista enlazada tiene costo O(1)
 
     public boolean excedeCupoMateria(){
         boolean res = false;
@@ -121,7 +121,7 @@ public ListaEnlazada<Tupla<String,Carrera>> getRefe(){
         return res;
     }
 
-//Tomo la cantidad de alumnos y los docentes, analizo para cada cargo la cantidad de docentes permitidos. Devuelvo un bool si excede/no excede el cupo
+//Tomo la cantidad de alumnos y los docentes, analizo para cada cargo la cantidad de docentes permitidos. Devuelvo un bool si excede/no excede el cupo.
 //Complejidad: O(1), para ver la cantidad que tengo solo tengo que acceder a su atributo de la lista enlazda, luego tengo un ciclo acotado que hace asignaciones O(1)
 
     public void cerrarMateria(Estudiantes estudiantes){
