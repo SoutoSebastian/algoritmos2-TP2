@@ -16,7 +16,7 @@ public class SistemaSIU {
         PROF
     }
 
-    public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){         //esto deberia estar finalizado
+    public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){        
 
         for (String libreta : libretasUniversitarias) {
             estudiantes.añadirLibreta(libreta);

@@ -86,7 +86,6 @@ public class Materia {
             }
 
         }
-
         return res;
     }
 
