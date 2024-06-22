@@ -1,4 +1,4 @@
-package aed;                                                //hacer complejidades
+package aed;                                                    //falta invariante                  
 
 public class Estudiantes {
     private Trie<Integer> estudiantes;        //yo no puse eso me jijeo---> //Lista enlazad va a tener nombres de las materias.

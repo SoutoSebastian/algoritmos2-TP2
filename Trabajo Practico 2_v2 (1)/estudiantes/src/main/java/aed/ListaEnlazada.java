@@ -12,6 +12,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
  */
     private Nodo _primero;
     private Nodo _ultimo;
+    private int _longitud;
 //Creo los atributos
 
     private class Nodo {
@@ -27,28 +28,30 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     public ListaEnlazada() {
         _primero= null;
         _ultimo= null;
-
+        _longitud = 0;  
     }
 
 //Incio la lista doblemente enlazada
 //Costo: O(1)    
-
-    public int longitud() {
-        int res = 0;
-        Nodo nodoIntercambiable = new Nodo(null);       
-        nodoIntercambiable = _primero;
-        
-        while (nodoIntercambiable!=null){               //esto ??---->//no ver solo primero, ver mas! REVISAR
-            res=res+1;
-            nodoIntercambiable=nodoIntercambiable.sig;
-            
-        }
-        return res;
-    }
+                                                                                    //CAMBIO LONGITUD ENVES DE METODO PASA A SER UNA ATRIBUTO
+//    public int longitud() {
+//        int res = 0;
+//        Nodo nodoIntercambiable = new Nodo(null);       
+//        nodoIntercambiable = _primero;
+//        
+//        while (nodoIntercambiable!=null){               //esto ??---->//no ver solo primero, ver mas! REVISAR
+//            res=res+1;
+//            nodoIntercambiable=nodoIntercambiable.sig;
+//            
+//        }
+//        return res;
+//    }
 
 //Recorro la lista sumando uno en cada nodo para ver su longitud
 //Costo: O(|Lista|)
-
+public int longitud() {
+    return _longitud;
+}
     public void agregarAdelante(T elem) {     
         Nodo nuevo =new Nodo(elem);
         nuevo.sig=_primero;   
@@ -60,6 +63,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         if (_ultimo==null){
             _ultimo = nuevo;
         }
+        _longitud++;
     }
 
 //Agrego un nodo al principio a través de los punteros
@@ -77,6 +81,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
             nuevo.ant=_ultimo;
             _ultimo=nuevo;
         }
+        _longitud++;
     }
 
 //Agrego un nodo al final a través de los punteros
@@ -134,6 +139,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
             (nodoIntercambiable.ant).sig=(nodoIntercambiable.sig);
             (nodoIntercambiable.sig).ant=(nodoIntercambiable.ant);
         }
+        _longitud--;
     }
 
 //Recorro la lista buscando el nodo que quiero eliminar, y segun donde se encuentre, hago asignaciones para desprenderlo de la lista
@@ -162,31 +168,39 @@ public class ListaEnlazada<T> implements Secuencia<T> {
 //Costo:O(|Lista|), recorro el nodo O(|Lista|) y luego hago asignaciones a traés de if O(1) 
 
     public ListaEnlazada<T> copiar() {
-        int contador= 0;       
-        ListaEnlazada<T> res = new ListaEnlazada<>();
-
-        while (contador != this.longitud()){
-            res.agregarAtras(obtener(contador));
-            contador=contador+1;
+        ListaEnlazada<T> ListaNueva = new ListaEnlazada<T>();
+        Nodo actual = this._primero ;
+        
+        while (actual != null) {
+            ListaNueva.agregarAtras(actual.valor);
+            actual = actual.sig;
         }
-        return res;
+        return ListaNueva; 
     }
-
 //Creo una nueva lista y luego recorro la que quiero copiar, y en cada posicion de la original, obtengo su valor y lo asigno a la que quiero copiar
-//Costo:O(|Lista|^2), tengo que recorrer toda la lista O(|Lista|) y obtener cada elemento O(|lista|) adentro del while por lo que se multiplican las complejidades
+//Costo:O(|Lista|), tengo que recorrer toda la lista O(|Lista|) y luego agregoAtras cada posicion O(1)
 
-    public ListaEnlazada(ListaEnlazada<T> lista) {                              //revisar
-        _primero=null;
-        _ultimo=null;
-        if (lista.longitud() != 0) {
-            _primero = lista.elegirNodo(0);
-            _ultimo = elegirNodo((lista.longitud())-1);
-        }
-
-    }
+   // public ListaEnlazada(ListaEnlazada<T> lista) {                              //revisar creo que trae aliasing igual se usa solo para el test de lista enlazada
+                                                                                    //LO CAMBIE PARA CUMPLIR COMPLEJIDADES
+   //     _primero=null;
+   //     _ultimo=null;
+   //     if (lista.longitud() != 0) {
+   //         _primero = lista.elegirNodo(0);
+   //         _ultimo = elegirNodo((lista.longitud())-1);
+   //     }
+//
+   // }
     
-//Paso una lista como parametro y devuelvo otra con los mismos punteros hacia el primero y al ultimo
-//Costo:O(|Lista|), cuando asigno el puntero al ultimo tengo que recorrer toda la longitud de la lista
+    public ListaEnlazada(ListaEnlazada<T> lista) {                      //ESTE ES EL METODO QUE AGREGUE
+          Nodo actual = lista._primero ;                      
+          while (actual != null) {                             
+              this.agregarAtras(actual.valor);              
+              actual = actual.sig;                     
+          }
+      }
+
+//Paso una lista como parametro y agrego cada elemento de la lista a la nueva, que es la que devuelvo
+//Costo:O(|Lista|), recorro cada posición de la lista original por eso tengo como complejidad la longitud de la lista
 
     @Override
     public String toString() {
@@ -287,7 +301,8 @@ public class ListaEnlazada<T> implements Secuencia<T> {
                 return null;
             }
         }
-        }
+    }
+
 //Devuelvo el anterior valor, y retocedo un nodo
 //Complejidad: O(1) 
        

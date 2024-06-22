@@ -52,8 +52,8 @@ public class Trie<T> {
         actual.valor = val;        
     }
 
-            
-    
+//
+//Complejidad:O()
 
     public boolean buscar (String s){
 
@@ -82,6 +82,8 @@ public class Trie<T> {
         return res;
     }
 
+//
+//Complejidad:O()
 
     public T obtener(String clave){
             T res;
@@ -101,6 +103,8 @@ public class Trie<T> {
         return res;
     }
 
+//
+//Complejidad:O()
 
     private Boolean tieneMasDeUnhijo(Nodo padre){
         int contador = 0;
@@ -114,6 +118,8 @@ public class Trie<T> {
         return contador > 1;                                    //CORECCION: antes contador < 2
     }
 
+//
+//Complejidad:O()
 
     private Boolean tieneUnhijo(Nodo padre){                            //CORRECCION: agrego esta funcion para chequear cuando sale del for.
         int contador = 0;
@@ -127,6 +133,8 @@ public class Trie<T> {
         return contador == 1;
     }
 
+//
+//Complejidad:O()
 
     public void borrar(String clave){
 
@@ -159,9 +167,6 @@ public class Trie<T> {
                 actual.valor = null;                                           //charito --> chari;   charisa, charizote. aca me devuelve el indice de i, y nodo chari (AUTOTESTEO VISUAL)
                                                                             //BORARIA A PARTIR DE chariTTTTTo, osea, borro t y todo lo q le siga a esa t. (solo "o" jiji)   
             }
-
-
-
             else{                                           //en este caso, borro a partir del indice obtenido.
                 ultNodo.siguientes.set(ultimoIndice,null);
             }
@@ -169,6 +174,9 @@ public class Trie<T> {
         
 
     }
+
+//
+//Complejidad:O()
 
     private void toStringAux (Nodo n, String p, ListaEnlazada<String> l){
         
@@ -179,21 +187,23 @@ public class Trie<T> {
                 l.agregarAtras(p);
             }
         }
-
         for(int i = 0; i<265; i++ ){
             char c = (char) i;
             toStringAux(n.siguientes.get(i), p + c, l );
         }
     }
 
+//Recorro todo el trie y voy agregando a una lista enlazada las distinas claves 
+//Complejidad:O(n), siendo n la cantidad de nodos que tiene el trie
 
-    
     public String[] todasLasPalabras(){
         ListaEnlazada<String> l = new ListaEnlazada<>();
-        toStringAux(this.raiz, "", l);
-        String[] res = l.anidarListaEnlazada();
+        toStringAux(this.raiz, "", l);                      //O(Cantidad de nodos)
+        String[] res = l.anidarListaEnlazada();               //O(|Lista|)
         return res;
     }
 
+//Utilizo toStringAux que recorre todo el nodo agregando cada clave a una lista enlazada, y cuando la obtengo la paso a un array de strings que es lo que devuelvo
+//Complejidad:O(|Lista| + CantNodos)
 
 }

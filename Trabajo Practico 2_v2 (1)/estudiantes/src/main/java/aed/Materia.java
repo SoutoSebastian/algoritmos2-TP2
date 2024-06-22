@@ -1,6 +1,11 @@
-package aed;
+package aed;                                        //falta invariante y complejidad de cerrarMateria
 
 public class Materia {
+    /*
+ * Invariante de representación de la clase materia:
+ * 
+ * 
+ */
     private Tripla<ListaEnlazada<String>,int[],ListaEnlazada<Tupla<String,Carrera>>> datosXmateria;
 
     public Materia(){
@@ -10,16 +15,30 @@ public class Materia {
 
         datosXmateria = new Tripla<ListaEnlazada<String> ,int[] , ListaEnlazada<Tupla<String,Carrera>>> (estudiantes, docentes, refACarrera);
     }
+//Defino la estructura de de datos que va a tener cada materia. La misma va a tener una tripla, en su primer coordenada una lista enlazada con los LU de los alumnos
+//anotados a esa materia, en segundo lugar va a tener un array de enteros con los docentes de esa materia, por último va a tener una lista enlazada con tuplas.
+//Cada posición de esta lista enlazada es una carrera a la que pertence esa materia y cuando accedemos a la tupla, en su primer posicion vamos a tener el nombre de la 
+//materia en esa carrera, y la segunda coordenada nos encontramos con una referencia al trie de esa carrera. Al estructurarlo de esta forma 
+//Al estructurarlo de esta forma cumplimos con el encapsulamiento y las complejidades.
     public void agregarAlumno(String alumno){
         ListaEnlazada<String> alumnos = datosXmateria.getPrimero();
 
         alumnos.agregarAtras(alumno);
     }
+
+//Agregamos un alumno en la primer coordenada
+//Complejidad: O(1)
+
     public int cantidadAlumnos(){
         ListaEnlazada<String> alumnos = datosXmateria.getPrimero();
 
         return alumnos.longitud();
     }
+
+//Accedo a la primer posicion de la tripla y luego devuelvo su longitud que lo tengo como atributo en lista enlazada esto cumple con su real longitud
+// gracias a que cada vez que aegrego un elemento le sumo uno a su longitud, lo que hace que la complejitud sea O(1)
+//Complejidad: O(1)
+
     public void agregarDocente(int docente){
         int[] docentes = datosXmateria.getSegundo();
         if(docente == 0){
@@ -37,10 +56,16 @@ public class Materia {
         return;
     }
 
+//Tomo el segundo elemento de la tripla, luego según que docente sea sumo uno en la posición correspondiente del array
+//Complejidad:O(1), analizo un if y luego hago asignaciones 
+
     public int[] getDocente(){
         int[] docentes = datosXmateria.getSegundo();
         return docentes;
     }
+
+//Tomo el segundo elemento de la tripla y lo devuelvo
+//Complejidad: O(1)
 
     public ListaEnlazada<String> getAlumnos(){
 
@@ -48,6 +73,17 @@ public class Materia {
         return alumnos;
 
     }
+
+//Tomo el primer elemento de la tripla y lo devuelvo
+//Complejidad: O(1)
+
+public ListaEnlazada<Tupla<String,Carrera>> getRefe(){
+        
+    return datosXmateria.getTercero();
+}
+
+//Tomo el tercer elemento de la tripla y lo devuelvo
+//Complejidad: O(1)
 
     public void insertarRefe(String nombreMateria,Carrera referencia){ 
         ListaEnlazada<Tupla<String,Carrera>> refe= datosXmateria.getTercero();                  
@@ -58,10 +94,8 @@ public class Materia {
         
     }
 
-    public ListaEnlazada<Tupla<String,Carrera>> getRefe(){
-        
-        return datosXmateria.getTercero();
-    }
+//Creo una tupla con los parametros de entrada y luego la agrego en la tercer coordenada de la tripla
+//Complejidad: O(1), agregaratras en una lista enlazada tiene costo O(1)
 
     public boolean excedeCupoMateria(){
         boolean res = false;
@@ -82,13 +116,13 @@ public class Materia {
                 if(cantAlumnos>0){
                     res = true;
                 }
-
             }
-
         }
         return res;
     }
 
+//Tomo la cantidad de alumnos y los docentes, analizo para cada cargo la cantidad de docentes permitidos. Devuelvo un bool si excede/no excede el cupo
+//Complejidad: O(1), para ver la cantidad que tengo solo tengo que acceder a su atributo de la lista enlazda, luego tengo un ciclo acotado que hace asignaciones O(1)
 
     public void cerrarMateria(Estudiantes estudiantes){
 
@@ -101,7 +135,6 @@ public class Materia {
             estudiantes.desinscribirEnMateria(alumno);                       // a todos los estuantes que estaban anotados, les bajo uno en la cantidad de materias que cursan
         }
 
-
         ListaEnlazada<Tupla<String,Carrera>> ListaAlias = this.getRefe();
         
         Iterador<Tupla<String,Carrera>> it2 =  ListaAlias.iterador();
@@ -113,7 +146,10 @@ public class Materia {
 
             refCarrera.borrarMateria(nombreMateria);            //elimino la materia con el nombre que tenga para cada carrera que este en la lista de tuplas
         }
-
-
     }
+    
+//Tomo los alumnos anotados y a cada uno de ellos les resto uno en su total de materias, luego tomo las carreras y creo un iterador, 
+//recorro la tupla y por cada carrera distinta de la materia la borro.
+//Complejidad: O(|Alumnos|+ DistintasCarrerasDeLaMateria* )             
+
 }

@@ -1,4 +1,4 @@
-package aed;            //hacer/revisar las complejidades
+package aed;            //              hacer/revisar las complejidades falta invariante y complejidad de borrar y cerrar materia
 
 public class Carrera {
     private Trie<Materia> materias;
@@ -91,7 +91,9 @@ public class Carrera {
     }
 
 //En el trie de la carrera, enlaza todas sus claves en un array y lo devuelve dando como respuesta todas las materias de una carrera
-//Complejidad: me jijo
+//Complejidad: O(|Materias| + la suma de la longitud de cada materia disntinta)
+
+
 
     //public void eliminarMateria(String materia){                                                  //esto esta repetido 
     //    
