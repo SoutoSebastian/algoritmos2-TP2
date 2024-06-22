@@ -86,5 +86,17 @@ public class Carrera {
     }
 
 
+    public void borrarMateria(String materia){
+        materias.borrar(materia);
+    }
+
+    public void cerrarMateria(String materia, Estudiantes estudiantes){
+        Materia datoMateria = materias.obtener(materia);
+
+        datoMateria.cerrarMateria(estudiantes);
+
+    }
+
+
 
 }

@@ -89,4 +89,32 @@ public class Materia {
 
         return res;
     }
+
+
+    public void cerrarMateria(Estudiantes estudiantes){
+
+        ListaEnlazada<String> alumnos = this.getAlumnos();
+
+        Iterador<String> it =  alumnos.iterador();
+
+        while(it.haySiguiente()){
+            String alumno = it.siguiente();
+            estudiantes.desinscribirEnMateria(alumno);                       // a todos los estuantes que estaban anotados, les bajo uno en la cantidad de materias que cursan
+        }
+
+
+        ListaEnlazada<Tupla<String,Carrera>> ListaAlias = this.getRefe();
+        
+        Iterador<Tupla<String,Carrera>> it2 =  ListaAlias.iterador();
+        
+        while(it2.haySiguiente()){                              //recorro la refe
+            Tupla<String,Carrera> tupla = it2.siguiente();
+            String nombreMateria = tupla.getPrimero();
+            Carrera refCarrera = tupla.getSegundo();
+
+            refCarrera.borrarMateria(nombreMateria);            //elimino la materia con el nombre que tenga para cada carrera que este en la lista de tuplas
+        }
+
+
+    }
 }

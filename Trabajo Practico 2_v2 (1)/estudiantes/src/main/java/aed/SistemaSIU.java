@@ -1,24 +1,12 @@
 package aed;
 
-//import org.omg.CORBA.TRANSACTION_MODE;
 
 public class SistemaSIU {
 
-    //private trie<trie<tuple<String[],Integer[]>>> sistema = new trie<trie<tuple<String[],Integer[]>>>(); //un trie q conecta a tries q conectan a tuplas <alumnos[],numero de docentes[]>
-                                                                                                         //ver estructura esbozada por augustus. 
-
-    //private tuple<String[],Integer[]> datosPorMateria = new tuple<String[],Integer[]>(new String[2],new Integer[2]);    //MUY DUDOSO, EN VEZ DE STRING[] USAR LISTAS ENLAZADAS EN MI OPINION.
-
-    private Trie<Carrera> carreras;
-
+   
     private Estudiantes estudiantes= new Estudiantes();
     
     private Trie<Carrera> sistema = new Trie<Carrera>();
-
-    //private Tupla<ListaEnlazada<String>,ListaEnlazada<Integer>> datosPorMateria = new Tupla<ListaEnlazada<String>, ListaEnlazada<Integer>>(); //me parece q esto es mas un template, va 
-                                                                                                                                              //a cambiar por materia asi q no usar esta
-                                                                                                                                              //misma variable.
-   
 
 
     enum CargoDocente{
@@ -27,10 +15,6 @@ public class SistemaSIU {
         JTP,
         PROF
     }
-
-    //tripla va a ser ----> <listastring,listaint,trieMaterias<trieCarrera<Tripla<listastring,listaint,trieMaterias<trieCarrera<Tripla>>>
-
-    //carrera
 
     public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){         //esto deberia estar finalizado
 
@@ -98,30 +82,9 @@ public class SistemaSIU {
         return res;	    
     }
 
-   public void cerrarMateria(String materia, String carrera) {
-        Carrera trieMaterias = sistema.obtener(carrera); // el trie de materias de la carrera q me pasan
-       
-        ListaEnlazada<String> listaEstudiantes = trieMaterias.obtenerAlumnos(materia);
-        
-
-        for (int i=0; i<listaEstudiantes.longitud(); i++){ // a todos los estuantes que estaban anotados, 
-                                                      // les bajo uno en la cantidad de materias que cursan 
-            estudiantes.desinscribirEnMateria((listaEstudiantes.obtener(i)));
-        }
-
-        ListaEnlazada<Tupla<String,Carrera>> referencia = trieMaterias.obtenerRefe(materia);
-       
-        for (int j=0; j<referencia.longitud(); j++){       //recorro la refe
-            Tupla<String,Carrera> tupla = referencia.obtener(j);
-            String nombreMateria = tupla.getPrimero();
-            Carrera nombreCarrera = tupla.getSegundo();
-            nombreCarrera.eliminarMateria(nombreMateria);   //elimino la materia con el nombre que tenga para cada carrera que este en la lista de tuplas
-
-        }
-
-     
-
-        
+    public void cerrarMateria(String materia, String carrera){
+        Carrera trieMaterias = sistema.obtener(carrera);
+        trieMaterias.cerrarMateria(materia, estudiantes);
     }
 
     public int inscriptos(String materia, String carrera){
