@@ -195,8 +195,8 @@ public class Trie<T> {
         }
     }
 
-//Recorro todo el trie y voy agregando a una lista enlazada las distinas claves 
-//Complejidad:O(n), siendo n la cantidad de nodos que tiene el trie
+//Recorro todo el trie y voy agregando a una lista enlazada las distinas claves.
+//Complejidad: O(n), siendo n la cantidad de nodos que tiene el trie
 
     public String[] todasLasPalabras(){
         ListaEnlazada<String> l = new ListaEnlazada<>();
@@ -205,7 +205,9 @@ public class Trie<T> {
         return res;                                           //es cantidad de palabras = cantidad de nodos. Entonces tenemos nuevamente O(Cantidad de Nodos).
     }
 
+
 //Utilizo toStringAux que recorre todo el nodo agregando cada clave a una lista enlazada, y cuando la obtengo la paso a un array de strings que es lo que devuelvo
 //Complejidad:O(CantNodos)
+
 
 }
