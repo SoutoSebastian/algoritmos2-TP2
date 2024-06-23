@@ -1,6 +1,8 @@
 package aed;
 import java.util.*;
 
+//Invariante de Representación: tiene exactamente 3 elementos, que pueden ser de cualquier tipo
+
 public class Tripla<A,B,C> {
     private A _primero;
     private B _segundo;
