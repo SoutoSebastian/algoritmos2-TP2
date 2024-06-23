@@ -26,36 +26,49 @@ public class SistemaSIU {
 
     public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){        
 
-        for (String libreta : libretasUniversitarias) {
-            estudiantes.añadirLibreta(libreta);
+        for (String libreta : libretasUniversitarias) { //sum[|libretaUniversitarias|-1,a=0]
+            estudiantes.añadirLibreta(libreta); //O(1)
         }
-            
-        for (int i=0; i<infoMaterias.length; i++){
+        //O(|libretasUniversitarias|)
+
+        for (int i=0; i<infoMaterias.length; i++){ //sum[|infoMaterias|-1,i=0]
     
                 Materia materiaVariable = new Materia();
 
-                for (int j=0; j<infoMaterias[i].getParesCarreraMateria().length; j++){
+                for (int j=0; j<infoMaterias[i].getParesCarreraMateria().length; j++){ //sum[|ParCarreraMateria|-1,j=0]
 
-                    String nombreCarrera=infoMaterias[i].getParesCarreraMateria()[j].getCarrera();
+                    String nombreCarrera=infoMaterias[i].getParesCarreraMateria()[j].getCarrera(); //O(1)
                     String nombreMateria = infoMaterias[i].getParesCarreraMateria()[j].getNombreMateria();
 
-                    if (sistema.buscar(nombreCarrera) == false){
+                    if (sistema.buscar(nombreCarrera) == false){ //O(|nombreCarrera|)
                         Carrera carrera = new Carrera();
-                        sistema.insertar(nombreCarrera,carrera);
+                        sistema.insertar(nombreCarrera,carrera); //O(|nombreCarrera|)
 
                     }
+                    //O(2|nombreCarrera|) = O(|nombreCarrera|)
 
-                    Carrera refeCarrera = sistema.obtener(nombreCarrera); //esto deberia llevar a Carrera x, q tiene como claves materias.
+                    Carrera refeCarrera = sistema.obtener(nombreCarrera); // O(|nombreCarrera|),   esto deberia llevar a Carrera x, q tiene como claves materias.
 
-                    materiaVariable.insertarRefe(nombreMateria, refeCarrera);
+                    materiaVariable.insertarRefe(nombreMateria, refeCarrera); 
 
-                    refeCarrera.agregarMateria(nombreMateria,materiaVariable);
+                    refeCarrera.agregarMateria(nombreMateria,materiaVariable);      // O(|materia|)
+
+                    //O(|nombreCarrera|+|materia|)
 
                 }
+                //O(sum[|ParCarreraMateria|-1,j=0](|nombreCarrera|+|materia|))
             }
+        //O(sum[|ParCarreraMateria|-1,j=0](sum[|ParCarreraMateria|-1,j=0](|nombreCarrera|+|materia|)))
     }
-//
-//Complejidad:O(|Materia|)
+//Inicializo el sistema. Primero  recorro las libretas y las agrego a estudiantes, el trie de claves libretas con valores de cuantas materias cursan.
+//Despues, arranco a iterar InfoMaterias. por cada iteracion i, que corresponde a una materia (con diferentes nombres dependiendo carrera pero a eso voy),
+//primero defino una materiaVariable de clase Materia donde guardare todos los alias. 
+//Itero los nombres (alias) y carreras a la que pertenece con j. Una vez tengo el alias j y la carrera pertenciente, chequeo si la carrera ya fue agregada. 
+//De lo contrario la agrego al trie principal.
+//Para el nombre de la materia, voy a guardar primero la referencia a la carrera y la voy a insertar en la tripla de q contienen todas las materias con 
+//las referencias a todas las carreras q contienen a esa materia. Por ultimo, agrego la materia a Carrera, el trie de la carrera q contiene todas sus materias.
+
+//Complejidad:O(|libretasUniversitarias| + O(sum[|ParCarreraMateria|-1,j=0](sum[|ParCarreraMateria|-1,j=0](|nombreCarrera|+|materia|))))
 
     public void inscribir(String estudiante, String carrera, String materia){
 
