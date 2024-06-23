@@ -1,9 +1,6 @@
-package aed;                                                        //falta invariante
-                                                                    //comentar SistemaSIU y su costo
-                                                                    //costo de cerrar materia
-                                                                    //costo de pasar el array de materias
-                                                                    //costo de pasar el array de carreras
-                                                                    // y revisar todo ya q estamos no
+package aed;                         
+
+
 public class SistemaSIU {
     /*
      *    Invariante de representación de SistemaSIU:
@@ -23,7 +20,7 @@ public class SistemaSIU {
         JTP,
         PROF
     }
-//Defino los atributos a usar
+
 
     public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){        
 
@@ -147,7 +144,6 @@ public class SistemaSIU {
         
         return res;
     }
-    //REVISAR
 //Recorre el nombre de la carrera en el trie y toma su valor que es un trie de materias, luego enlaza todas las materias a un array que devuelve.
 //Complejidad: O(|Carrera| + sum |mc|)
 

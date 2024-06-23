@@ -1,4 +1,4 @@
-package aed;            //              hacer/revisar las complejidades falta invariante y complejidad de borrar y cerrar materia
+package aed;           
 
 public class Carrera {
     private Trie<Materia> materias;
@@ -17,7 +17,7 @@ public class Carrera {
 * y tercero la materia como una lista enlazada de tuplas, en el primer lugar de cada tupla los distintos nombres de la misma materia en distintas carreras
 * y el en segundo lugar de cada tupla el acceso al trie de su respectiva carrera, asi por cada lista enlazada un acceso a todas las carreras que pertenece la materia.
 */
-//Complejidad:
+//Complejidad:O(1)
 
     public void agregarMateria(String materia, Materia datosMateria){
 
@@ -94,14 +94,6 @@ public class Carrera {
 //Complejidad: O(sum |mc|) mc siendo cada materia de la carrera.
  
 
-
-    //public void eliminarMateria(String materia){                                                  //esto esta repetido 
-    //    
-    //    materias.borrar(materia);
-    //}
-
-//Al pasar el string de una materia lo borra                                                         
-//Complejidad:
     public Materia getMateria (String materia){
 
        return materias.obtener(materia);    //O(|materia|)
@@ -127,14 +119,14 @@ public class Carrera {
 //Complejidad:O(|materia|)
 
     public void borrarMateria(String materia){                                                                          
-        materias.borrar(materia); //Complejidad:O(|palabra|)
+        materias.borrar(materia); //Complejidad:O(|materia|)
     }
 
 //Al pasar el string de una materia lo borra
-//Complejidad: O()
+//Complejidad: O(|materia|)
 
     public void cerrarMateria(String materia, Estudiantes estudiantes){
-        Materia datoMateria = materias.obtener(materia); // O(1)
+        Materia datoMateria = materias.obtener(materia); // O(|carrera|)
 
         datoMateria.cerrarMateria(estudiantes); // O(|Alumnos|+ sum[|refACarrera|,i=1](|nombreMateria|) )  
 
@@ -142,6 +134,6 @@ public class Carrera {
 
 //Accedo a los estudiantes por el string de la materia, luego le bajo uno a la cantidad de materias inscriptas de cada alumno,      //revisar esto 
 // y luego elimno la materia de todas las carreras en las que estaba.
-//Complejidad: O(|alumnos|+ sum[|refACarrera|,i=1](|nombreMateria|))
+//Complejidad: O(|carrera| + |alumnos|+ sum[|refACarrera|,i=1](|nombreMateria|))
 
 }

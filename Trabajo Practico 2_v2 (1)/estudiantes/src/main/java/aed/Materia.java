@@ -1,4 +1,4 @@
-package aed;                                        //falta invariante y complejidad de cerrarMateria
+package aed;                                       
 
 public class Materia {
     /*

@@ -6,7 +6,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
 /*
  *  Invariante de representación de Lista doblemente enlazada:
  *  Todos los nodos de la lista se encuentran conectados, ninguno es null con excepcion del anterior del primero y el siguiente del ultimo.
- *  La longitud coincide con la cantida de nodos que hay y todos son del mismo tipo.
+ *  La longitud coincide con la cantidad de nodos que hay y todos son del mismo tipo.
  * 
  * 
  */
@@ -40,7 +40,7 @@ public int longitud() {
     public void agregarAdelante(T elem) {     
         Nodo nuevo =new Nodo(elem);
         nuevo.sig=_primero;   
-                                              //?¿--->   //PARA MI ESTO TRAE PROBELMAS CON ALIASING, PERO NO SE, YO CREARIA UN NUEVO NODO DONDE GUARDO _PRIMERO Y AHI LO METO. _PREGUNTAR_
+                                              
         if(_primero!=null){
             _primero.ant=nuevo;}
         _primero=nuevo;
@@ -165,18 +165,8 @@ public int longitud() {
 //Creo una nueva lista y luego recorro la que quiero copiar, y en cada posicion de la original, obtengo su valor y lo asigno a la que quiero copiar
 //Complejidad:O(|Lista|), tengo que recorrer toda la lista O(|Lista|) y luego agregoAtras cada posicion O(1)
 
-   // public ListaEnlazada(ListaEnlazada<T> lista) {                              //revisar creo que trae aliasing igual se usa solo para el test de lista enlazada
-                                                                                    //LO CAMBIE PARA CUMPLIR COMPLEJIDADES
-   //     _primero=null;
-   //     _ultimo=null;
-   //     if (lista.longitud() != 0) {
-   //         _primero = lista.elegirNodo(0);
-   //         _ultimo = elegirNodo((lista.longitud())-1);
-   //     }
-//
-   // }
     
-    public ListaEnlazada(ListaEnlazada<T> lista) {                      //ESTE ES EL METODO QUE AGREGUE
+    public ListaEnlazada(ListaEnlazada<T> lista) {                      
           Nodo actual = lista._primero ;                      
           while (actual != null) {                             
               this.agregarAtras(actual.valor);              

@@ -1,7 +1,7 @@
-package aed;                                                    //falta invariante                  
+package aed;                                                                
 
 public class Estudiantes {
-    private Trie<Integer> estudiantes;        //yo no puse eso me jijeo---> //Lista enlazad va a tener nombres de las materias.
+    private Trie<Integer> estudiantes;        
 /*
  *  Invariante de representación de Estudiantes:
  *  las claves de los tries son Strings "int/int" y Los valores son Integer >= 0.
