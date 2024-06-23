@@ -1,6 +1,8 @@
 package aed;
 import java.util.*;
 
+//Invariante de Representación: tiene exactamente 2 elementos, que pueden ser de cualquier tipo
+
 public class Tupla<A,B> {
     private A _primero;
     private B _segundo;
