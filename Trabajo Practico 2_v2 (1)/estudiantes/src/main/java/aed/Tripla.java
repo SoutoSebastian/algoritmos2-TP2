@@ -17,31 +17,38 @@ public class Tripla<A,B,C> {
         _tercero = tercero;
 
     }
+    //Complejidad: O(1)
 
 
     public void modPrimero(A mod){      //para modificar el elemento por si es un primitivo, no nuestro caso
         _primero = mod;
     }
+    //Complejidad: O(1)
 
     public void modSegundo(B mod){      //para modificar el elemento por si es un primitivo, no nuestro caso
         _segundo = mod;
     }
+    //Complejidad: O(1)
 
     public void modTercero(C mod){      //para modificar el elemento por si es un primitivo, no nuestro caso
         _tercero = mod;
     }
+    //Complejidad: O(1)
 
     public A getPrimero(){
         return this._primero;
     }
+    //Complejidad: O(1)
 
     public B getSegundo(){
         return this._segundo;
     }
+    //Complejidad: O(1)
 
     public C getTercero(){
         return this._tercero;
     }
+    //Complejidad: O(1)
 
 
     @Override
@@ -55,16 +62,7 @@ public class Tripla<A,B,C> {
 
         return sbuffer.toString();
     }
+    //Complejidad: O(1)
 
-    public static void main(String[] args) {
-        // Ejemplo de uso de Tuple con Integer y String
-        Tripla<Integer, String, String> tuple1 = new Tripla<>(10, "Hello","huhu");
-        System.out.println(tuple1);
-
-        // Ejemplo de uso de Tuple con Double y Boolean
-        Tripla<Double, Boolean,Integer> tuple2 = new Tripla<>(3.14, true,9);
-        System.out.println(tuple2);
-
-
-    }
+    
 }
