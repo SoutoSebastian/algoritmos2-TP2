@@ -7,8 +7,9 @@ package aed;                                                        //falta inva
 public class SistemaSIU {
     /*
      *    Invariante de representación de SistemaSIU:
+     * Todas las materias pertenecen al valor asociado de, al menos, una carrera.
      * 
-     * 
+     * Todas las carreras tienen asociada (como parte de su clave) al menos una materia.
      */
     private Estudiantes estudiantes= new Estudiantes();
     
