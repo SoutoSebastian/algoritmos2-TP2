@@ -15,23 +15,28 @@ public class Tupla<A,B> {
         _segundo = segundo;
 
     }
+    //Complejidad: O(1)
 
 
     public void modPrimero(A mod){      //para modificar el elemento por si es un primitivo, no nuestro caso
         _primero = mod;
     }
+    //Complejidad: O(1)
 
     public void modSegundo(B mod){      //para modificar el elemento por si es un primitivo, no nuestro caso
         _segundo = mod;
     }
+    //Complejidad: O(1)
 
     public A getPrimero(){
         return this._primero;
     }
+   //Complejidad: O(1)
 
     public B getSegundo(){
         return this._segundo;
     }
+   //Complejidad: O(1)
 
 
     @Override
@@ -45,16 +50,7 @@ public class Tupla<A,B> {
 
         return sbuffer.toString();
     }
+    //Complejidad: O(1)
 
-    public static void main(String[] args) {
-        // Ejemplo de uso de Tuple con Integer y String
-        Tupla<Integer, String> tuple1 = new Tupla<>(10, "Hello");
-        System.out.println(tuple1);
-
-        // Ejemplo de uso de Tuple con Double y Boolean
-        Tupla<Double, Boolean> tuple2 = new Tupla<>(3.14, true);
-        System.out.println(tuple2);
-
-
-    }
+   
 }
