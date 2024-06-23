@@ -127,21 +127,21 @@ public class Carrera {
 //Complejidad:O(|materia|)
 
     public void borrarMateria(String materia){                                                                          
-        materias.borrar(materia);
+        materias.borrar(materia); //Complejidad:O(|palabra|)
     }
 
-//Al pasar el string de una materia lo borra                                                            //revisar esto 
-//Complejidad:
+//Al pasar el string de una materia lo borra
+//Complejidad: O()
 
     public void cerrarMateria(String materia, Estudiantes estudiantes){
-        Materia datoMateria = materias.obtener(materia);
+        Materia datoMateria = materias.obtener(materia); // O(1)
 
-        datoMateria.cerrarMateria(estudiantes);
+        datoMateria.cerrarMateria(estudiantes); // O(|Alumnos|+ sum[|refACarrera|,i=1](|nombreMateria|) )  
 
     }
 
 //Accedo a los estudiantes por el string de la materia, luego le bajo uno a la cantidad de materias inscriptas de cada alumno,      //revisar esto 
 // y luego elimno la materia de todas las carreras en las que estaba.
-//Complejidad:
+//Complejidad: O(|alumnos|+ sum[|refACarrera|,i=1](|nombreMateria|))
 
 }

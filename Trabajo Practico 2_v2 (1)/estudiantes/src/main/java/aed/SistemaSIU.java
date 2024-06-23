@@ -55,7 +55,7 @@ public class SistemaSIU {
             }
     }
 //
-//Complejidad:O()
+//Complejidad:O(|Materia|)
 
     public void inscribir(String estudiante, String carrera, String materia){
 
@@ -90,12 +90,14 @@ public class SistemaSIU {
 //Complejidad: O(|Carrera| + |Materia|)
 
     public void cerrarMateria(String materia, String carrera){
-        Carrera trieMaterias = sistema.obtener(carrera);
-        trieMaterias.cerrarMateria(materia, estudiantes);
+        Carrera trieMaterias = sistema.obtener(carrera); //O(|carrera|)
+        trieMaterias.cerrarMateria(materia, estudiantes); // O(|alumnos|+ sum[|refACarrera|,i=1](|nombreMateria|))
     }
 
-//
-//Complejidad: O()
+//Ver explicaciones anidadas a cada funcion llamada.
+//Basicamente se obtiene la carrera, y luego se obtiene la materia a borrar en la carrera dada. Para esa materia, borro en 1 la cantidad de materias q cursan sus estudiantes
+//y gracias a las referencias de los aliases de las materias, elininamos todas las referencias para todas las carreras, asi comom sus nodos en los tries.
+//Complejidad: O(|Carrera| + |Materia| + sum[|refACarrera|,i=1](|nombreMateria|)) )
 
     public int inscriptos(String materia, String carrera){
         Carrera carreraInscriptos = sistema.obtener(carrera);                       //O(|Carrera|)

@@ -138,26 +138,26 @@ public ListaEnlazada<Tupla<String,Carrera>> getRefe(){
 
         Iterador<String> it =  alumnos.iterador();
 
-        while(it.haySiguiente()){
+        while(it.haySiguiente()){       //sum[|alumnos|,i=1](O(1))
             String alumno = it.siguiente();
-            estudiantes.desinscribirEnMateria(alumno);                       // a todos los estuantes que estaban anotados, les bajo uno en la cantidad de materias que cursan
+            estudiantes.desinscribirEnMateria(alumno);      //O(1)                ,a todos los estuantes que estaban anotados, les bajo uno en la cantidad de materias que cursan
         }
 
         ListaEnlazada<Tupla<String,Carrera>> ListaAlias = this.getRefe();
         
         Iterador<Tupla<String,Carrera>> it2 =  ListaAlias.iterador();
         
-        while(it2.haySiguiente()){                              //recorro la refe
+        while(it2.haySiguiente()){                              //recorro la refe,  sum[|refACarrera|,i=1](O(1))
             Tupla<String,Carrera> tupla = it2.siguiente();
             String nombreMateria = tupla.getPrimero();
             Carrera refCarrera = tupla.getSegundo();
 
-            refCarrera.borrarMateria(nombreMateria);            //elimino la materia con el nombre que tenga para cada carrera que este en la lista de tuplas
+            refCarrera.borrarMateria(nombreMateria);   // O(|nombreMateria|), elimino la materia con el nombre que tenga para cada carrera que este en la lista de tuplas
         }
     }
     
 //Tomo los alumnos anotados y a cada uno de ellos les resto uno en su total de materias, luego tomo las carreras y creo un iterador, 
 //recorro la tupla y por cada carrera distinta de la materia la borro.
-//Complejidad: O(|Alumnos|+ DistintasCarrerasDeLaMateria* )             
+//Complejidad: O(sum[|refACarrera|,i=1](|nombreMateria|) + |alumnos|)             
 
 }
