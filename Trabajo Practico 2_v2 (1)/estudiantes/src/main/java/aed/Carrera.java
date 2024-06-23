@@ -3,8 +3,8 @@ package aed;            //              hacer/revisar las complejidades falta in
 public class Carrera {
     private Trie<Materia> materias;
     /*
-     *    Invariante de repetición de Carrera:
-     * 
+     *Invariante de representacion: 
+     *Los valores de cada clave son distintos, ya que para una carrera cada materia que aparece en su trie de materias es diferente.
      * 
      */
     public Carrera(){
@@ -86,13 +86,13 @@ public class Carrera {
 
     public String[] todasLasMaterias(){
 
-        String[] res = materias.todasLasPalabras();                                                         //complejidad sin hacer
+        String[] res = materias.todasLasPalabras();                                                         
         return res;
     }
 
 //En el trie de la carrera, enlaza todas sus claves en un array y lo devuelve dando como respuesta todas las materias de una carrera
-//Complejidad: O(|Materias| + la suma de la longitud de cada materia disntinta)
-
+//Complejidad: O(sum |mc|) mc siendo cada materia de la carrera.
+ 
 
 
     //public void eliminarMateria(String materia){                                                  //esto esta repetido 

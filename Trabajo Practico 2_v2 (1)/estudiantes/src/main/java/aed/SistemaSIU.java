@@ -125,18 +125,17 @@ public class SistemaSIU {
     }
 
 //Recorre el trie del sistema y devuelve todas las claves que contiene en formato de array de strings que son el nombre de las carreras.
-//Complejidad: O()
+//Complejidad: O(sum |c|) siendo c cada carrera del sistema.
 
     public String[] materias(String carrera){
         Carrera trieMaterias = sistema.obtener(carrera);	 //O(|Carrera|) recorre el trie y tiene como costo la longitud de letras de la carrera
-        String[] res = trieMaterias.todasLasMaterias();     //O(|Carrera| * TodasLasMateriasDeLaCarera), la complejidad se la da las funciones auxiliares que ulitizamos
+        String[] res = trieMaterias.todasLasMaterias();     //O(sum |mc|) mc siendo cada materia de la carrera.
         
         return res;
     }
     //REVISAR
-//Recorre el nombre de la carrera en el trie y toma su valor que es un trie de materias, luego enlaza todas sus valores a un array que devuelve.
-//Complejidad: O(|Carrera| +|Cantidad de materias|*longitud de cada uno de sus nombres), la funcion todasLasMaterias lo que hace es recorrer todo el trie de carrera
-// y enlazar cada clave a un array de strings
+//Recorre el nombre de la carrera en el trie y toma su valor que es un trie de materias, luego enlaza todas las materias a un array que devuelve.
+//Complejidad: O(|Carrera| + sum |mc|)
 
 
     public int materiasInscriptas(String estudiante){
