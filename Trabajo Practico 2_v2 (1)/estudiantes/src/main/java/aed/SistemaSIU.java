@@ -35,7 +35,7 @@ public class SistemaSIU {
     
                 Materia materiaVariable = new Materia();
 
-                for (int j=0; j<infoMaterias[i].getParesCarreraMateria().length; j++){ //sum[|ParCarreraMateria|-1,j=0]
+                for (int j=0; j<infoMaterias[i].getParesCarreraMateria().length; j++){ //sum[|infoMaterias[i]|-1,j=0]
 
                     String nombreCarrera=infoMaterias[i].getParesCarreraMateria()[j].getCarrera(); //O(1)
                     String nombreMateria = infoMaterias[i].getParesCarreraMateria()[j].getNombreMateria();
@@ -56,9 +56,9 @@ public class SistemaSIU {
                     //O(|nombreCarrera|+|materia|)
 
                 }
-                //O(sum[|ParCarreraMateria|-1,j=0](|nombreCarrera|+|materia|))
+                //O(sum[|infoMaterias[i]|-1,j=0](|nombreCarrera|+|materia|))
             }
-        //O(sum[|ParCarreraMateria|-1,i=0](sum[|ParCarreraMateria|-1,j=0](|nombreCarrera|+|materia|)))
+        //O(sum[|infoMaterias|-1,i=0](sum[|infoMaterias[i]|-1,j=0](|nombreCarrera|+|materia|)))
     }
 //Inicializo el sistema. Primero  recorro las libretas y las agrego a estudiantes, el trie de claves libretas con valores de cuantas materias cursan.
 //Despues, arranco a iterar InfoMaterias. por cada iteracion i, que corresponde a una materia (con diferentes nombres dependiendo carrera pero a eso voy),
@@ -68,7 +68,7 @@ public class SistemaSIU {
 //Para el nombre de la materia, voy a guardar primero la referencia a la carrera y la voy a insertar en la tripla de q contienen todas las materias con 
 //las referencias a todas las carreras q contienen a esa materia. Por ultimo, agrego la materia a Carrera, el trie de la carrera q contiene todas sus materias.
 
-//Complejidad:O(|libretasUniversitarias| + O(sum[|ParCarreraMateria|-1,i=0](sum[|ParCarreraMateria|-1,j=0](|nombreCarrera|+|materia|))))
+//Complejidad:O(|libretasUniversitarias| + (sum[|infoMaterias|-1,i=0](sum[|infoMaterias[i]|-1,j=0](|nombreCarrera|+|materia|))))
 
     public void inscribir(String estudiante, String carrera, String materia){
 
