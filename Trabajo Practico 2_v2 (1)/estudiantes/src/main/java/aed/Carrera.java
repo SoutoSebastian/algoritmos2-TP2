@@ -3,8 +3,8 @@ package aed;            //              hacer/revisar las complejidades falta in
 public class Carrera {
     private Trie<Materia> materias;
     /*
-     *    Invariante de repetición de Carrera:
-     * 
+     *Invariante de representacion: 
+     *Los valores de cada clave son distintos, ya que para una carrera cada materia que aparece en su trie de materias es diferente.
      * 
      */
     public Carrera(){
