@@ -1,15 +1,3 @@
-aca en el readme metan cosas a modificar/observar !!! ~~(borren o tachen cuando resuelven)~~ con ~~ al principio y atras ~~
 
-1- ~~EN ELIMINAR, CHEQUEAR BIEN Q ESTOY BORRANDO LAS CONEXIONES DE LOS NODOS INUTILES. OSEA, Q NO EXISTEN NODOS INUTILES.~~
-
-Queda hacer:
-
-plantelDocente()  
-
-cerrarMateria()
-
-Invariantes de Representacion de cada clase
-
-Justificacion de complejidades
-
-?
+El cluster violeta contiene 3 sectores, los cuales representan respectivamente a los sectores de la electricidad y el gas, servicios a empresas de todo tipo y otros servicios. 
+Estos sectores, pese a estar en un mismo cluster, se encuentran alejados, lo que indica que no se encuentran fuertemente relacionados entre si, aunque se puede establecer una relación entre ellos, ya que, por ejemplo, todos los sectores necesitan en mayor o menor medida de la electricidad. Estos sectores tienen una producción mayor a los del cluster celeste aunque no alcanzan los niveles del sector 1, que se encuentra señalado en amarillo en el gráfico y representa al sector agricultura y forestal, el cual da empleo a más del 18% de la población economicamente activa del país.
